@@ -6,6 +6,7 @@ import { ReportComponent } from "./report.component";
 import { ReportRoutingModule } from "./report-routing.module";
 import { FactorComponent } from "./factor/factor.component";
 import { SharedModule } from "../shared/shared.module";
+import { FactorMainComponent } from "./factor-main/factor-main.component";
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { SharedModule } from "../shared/shared.module";
     NbMenuModule,
     SharedModule.forChild(),
   ],
-  declarations: [ReportComponent, FactorComponent],
+  declarations: [ReportComponent, FactorComponent,FactorMainComponent],
 })
 export class ReportModule {}

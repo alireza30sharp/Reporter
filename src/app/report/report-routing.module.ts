@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReportComponent } from "./report.component";
 import { FactorComponent } from "./factor/factor.component";
 import { NotFoundComponent } from "../pages/miscellaneous/not-found/not-found.component";
+import { FactorMainComponent } from "./factor-main/factor-main.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
       {
         path: "factor/:eid",
         component: FactorComponent,
+      },
+      {
+        path: "factor-main",
+        component: FactorMainComponent,
       },
       {
         path: "**",
