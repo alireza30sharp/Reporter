@@ -12,4 +12,9 @@ export class ApiUrlService {
     GetBarname: BASE_URL + "Barname/GetBarname",
     GetBarnameByLink: BASE_URL + "Barname/GetBarnameByLink",
   };
+  contract = {
+    GetContractByTrackingCode: BASE_URL + "Contract/GetContractByTrackingCode",
+    AcceptContract: BASE_URL + "Contract/AcceptContract",
+    RejectContract: BASE_URL + "Contract/RejectContract",
+  };
 }

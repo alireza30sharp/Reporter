@@ -1,26 +1,116 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+@font-face {
+  font-family: iranYekanNumber;
+  src: url(../../../assets/fonts/ttf/iranyekanwebregularfanum.ttf) format("ttf"),
+    url(../../../assets/fonts/woff/iranyekanwebregularfanum.woff) format("woff"),
+    url(../../../assets/fonts/eot/iranyekanwebregularfanum.eot) format("eot");
+}
+a,
+li,
+ul,
+div:not(
+    .ag-input-wrapper,
+    .dx-icon-search,
+    .dx-treeview-toggle-item-visibility-opened,
+    .dx-treeview-toggle-item-visibility
+  ),
+span:not(
+    .ag-icon,
+    .ki-button__icon,
+    .ng-arrow-wrapper,
+    .dx-icon,
+    .dx-icon-clear,
+    .fa-solid,
+    .fa-share-nodes,
+    .fa-ellipsis-vertical
+  ),
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+button:not(.btn-close),
+section,
+textarea,
+label,
+nb-card-header,
+nb-card-body {
+  font-family: iranYekanNumber !important;
+  text-align: start;
+}
+nb-card-body {
+  direction: rtl;
+}
 
+input::placeholder {
+  font-family: iranYekanNumber !important;
+}
+body {
+  font-family: iranYekanNumber !important;
+  background-color: #f8f8f8 !important;
+  overflow: hidden;
+  direction: rtl;
+}
+ag-grid-angular {
+  height: 70vh;
+  width: 100%;
+  display: block;
+  flex: 1;
+}
+.ag-column-drop,
+.ag-header-row-column {
+  background-color: #d7d6d6 !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+}
+.btn-close:focus {
+  box-shadow: none !important;
+}
+
+.modal {
+  backdrop-filter: blur(5px) !important;
+}
+
+.fade {
+  transition: opacity 0.15s linear !important;
+}
+
+.modal.fade .modal-dialog {
+  transform: unset !important;
+}
+
+.modal-content {
+  box-shadow: 0 0 100px #00000030;
+}
+.modal-content {
+  border-radius: 15px !important;
+}
+
+.modal-body {
+  line-height: 2rem;
+}
 // themes - our custom or/and out of the box themes
-@import 'themes';
+@import "themes";
 
 // framework component themes (styles tied to theme variables)
-@import '@nebular/theme/styles/globals';
-@import '@nebular/auth/styles/globals';
+@import "@nebular/theme/styles/globals";
+@import "@nebular/auth/styles/globals";
 
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/mixins';
-@import 'bootstrap/scss/grid';
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/grid";
 
 // loading progress bar theme
-@import './pace.theme';
+@import "./pace.theme";
 
-@import './layout';
-@import './overrides';
+@import "./layout";
+@import "./overrides";
 
 // install the framework and custom global styles
 @include nb-install() {
-
   // framework global styles
   @include nb-theme-global();
   @include nb-auth-global();
@@ -30,7 +120,65 @@
   @include ngx-pace-theme();
 
   @include nb-overrides();
-};
-*{
+}
+* {
+  text-align: start;
+}
+
+.modal {
+  backdrop-filter: blur(5px);
+}
+
+.fade {
+  transition: opacity 0.15s linear !important;
+}
+
+.modal.fade .modal-dialog {
+  transform: unset !important;
+}
+.modal-backdrop,
+.modal {
+  z-index: 1030 !important;
+}
+nb-layout-header.fixed {
+  z-index: 1020 !important;
+}
+.z-index-9 {
+  z-index: 1060 !important;
+}
+.modal-content {
+  box-shadow: 0 0 100px #00000030;
+  border-radius: 15px !important;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+.rtl {
+  direction: rtl !important;
+  text-align: start;
+}
+
+.ltr {
+  direction: ltr !important;
   text-align: end;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e0e3e9;
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

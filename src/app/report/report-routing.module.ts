@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReportComponent } from "./report.component";
 import { FactorComponent } from "./factor/factor.component";
 import { NotFoundComponent } from "../pages/miscellaneous/not-found/not-found.component";
-import { FactorMainComponent } from "./factor-main/factor-main.component";
+import { ContractComponent } from "./contract/contract.component";
 
 const routes: Routes = [
   {
@@ -15,8 +15,8 @@ const routes: Routes = [
         component: FactorComponent,
       },
       {
-        path: "factor-main",
-        component: FactorMainComponent,
+        path: "contract/:trackingCode",
+        component: ContractComponent,
       },
       {
         path: "**",
