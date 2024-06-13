@@ -4,6 +4,8 @@ import { ReportService } from "../services/report.service";
 import { ActivatedRoute } from "@angular/router";
 import { FactorInterFace } from "../interface";
 import { ContractInterface } from "../interface/contarct";
+import { ToastService } from "../../shared/services";
+import { finalize } from "rxjs";
 
 @Component({
   selector: "ngx-contract",
@@ -16,6 +18,7 @@ export class ContractComponent implements OnInit {
   eid: any;
   dataSetName: any = "Data";
   message: string = "";
+  loading: boolean = false;
   model: ContractInterface;
   isAccepted: boolean = false;
   // variablesInReport: Array<VariablesReportInterFace> = [
@@ -23,7 +26,8 @@ export class ContractComponent implements OnInit {
   // ];
   constructor(
     private _reportService: ReportService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _toastService: ToastService
   ) {}
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params) => {
@@ -33,23 +37,59 @@ export class ContractComponent implements OnInit {
   }
 
   getContractByTrackingCode() {
-    this._reportService.getContractByTrackingCode(this.eid).subscribe((res) => {
-      if (res.isOk) {
-        debugger;
-        this.model = res.data;
-      } else {
-        this.message = res.messages.join(" ");
-      }
-    });
+    this.loading = true;
+    this._reportService
+      .getContractByTrackingCode(this.eid)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+        })
+      )
+      .subscribe((res) => {
+        if (res.isOk) {
+          debugger;
+          this.model = res.data;
+        } else {
+          this.message = res.messages.join(" ");
+        }
+      });
   }
   acceptContract() {
-    this._reportService.acceptContract(this.eid).subscribe((res) => {
-      console.log(res);
+    this._reportService.acceptContract(this.eid).subscribe({
+      next: (res) => {
+        if (res.isOk) {
+          this._toastService.success(res.data.message);
+        }
+      },
+      error: (err) => {
+        let msg = "";
+        if (err.error.messages) {
+          this._toastService.error(err.error.messages);
+          msg = err.error.messages.join(" ");
+        } else if (err.error.message) {
+          this._toastService.error(err.error.message);
+          msg = err.error.message.join(" ");
+        }
+      },
     });
   }
   rejectContract() {
-    this._reportService.rejectContract(this.eid).subscribe((res) => {
-      console.log(res);
+    this._reportService.rejectContract(this.eid).subscribe({
+      next: (res) => {
+        if (res.isOk) {
+          this._toastService.success(res.data.message);
+        }
+      },
+      error: (err) => {
+        let msg = "";
+        if (err.error.messages) {
+          this._toastService.error(err.error.messages);
+          msg = err.error.messages.join(" ");
+        } else if (err.error.message) {
+          this._toastService.error(err.error.message);
+          msg = err.error.message.join(" ");
+        }
+      },
     });
   }
 }

@@ -3,13 +3,32 @@ import { ReportComponent } from "./components";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
-const component = [ReportComponent];
+import {
+  KiButtonComponent,
+  KiConfirmationComponent,
+  kiModalComponent,
+} from "./ki-components";
+import { PrimengModule } from "./primeng/primeng.module";
+import { LoadingComponent } from "./components/loading/loading.component";
+const component = [
+  ReportComponent,
+  KiButtonComponent,
+  KiConfirmationComponent,
+  kiModalComponent,
+  LoadingComponent,
+];
 @NgModule({
   declarations: [...component],
-  imports: [FormsModule, ReactiveFormsModule, RouterModule, CommonModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    CommonModule,
+    PrimengModule,
+  ],
 
   providers: [],
-  exports: [ReactiveFormsModule, ...component],
+  exports: [ReactiveFormsModule, PrimengModule, ...component],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {

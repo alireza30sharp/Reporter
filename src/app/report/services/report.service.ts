@@ -25,15 +25,13 @@ export class ReportService {
     );
   }
   acceptContract(Id: number) {
-    return this.$http.post<response<ContractInterface>>(
-      this.urlSvc.contract.AcceptContract,
-      { trackingCode: Id }
-    );
+    return this.$http.post<response<any>>(this.urlSvc.contract.AcceptContract, {
+      trackingCode: Id,
+    });
   }
   rejectContract(Id: number) {
-    return this.$http.post<response<ContractInterface>>(
-      this.urlSvc.contract.RejectContract,
-      { trackingCode: Id }
-    );
+    return this.$http.post<response<any>>(this.urlSvc.contract.RejectContract, {
+      trackingCode: Id,
+    });
   }
 }

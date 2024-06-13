@@ -1,263 +1,279 @@
-<div class="invoice-1 invoice-content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="invoice-inner clearfix">
-          <div class="invoice-info clearfix" id="invoice_wrapper">
-            <div class="invoice-headar">
-              <div class="row g-0">
-                <div class="col-sm-6">
-                  <div class="invoice-logo">
-                    <!-- logo started -->
-                    <div class="logo">
-                      <img
-                        src="../../../assets/images/logos/logo-50.png"
-                        alt="logo"
+<ng-container *ngIf="loading; else tem">
+  <ngx-loading></ngx-loading>
+</ng-container>
+<ng-template #tem>
+  <div class="invoice-1 invoice-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="invoice-inner clearfix">
+            <div class="invoice-info clearfix" id="invoice_wrapper">
+              <div class="invoice-headar">
+                <div class="row g-0">
+                  <div class="col-sm-6">
+                    <div class="invoice-logo">
+                      <!-- logo started -->
+                      <div class="logo">
+                        <img
+                          src="../../../assets/images/logos/logo-50.png"
+                          alt="logo"
+                        />
+                      </div>
+                      <span
+                        class="badge bg-success success"
+                        *ngIf="model?.contractHeader.isAccepted"
+                        >تایید شده</span
+                      >
+
+                      <span
+                        *ngIf="model?.contractHeader.isRejected"
+                        class="badge bg-danger danger"
+                        >عدم تایید</span
+                      >
+
+                      <span
+                        *ngIf="
+                          !model?.contractHeader.isRejected &&
+                          !model?.contractHeader.isAccepted
+                        "
+                        class="badge badge-warning"
+                        >در حال بررسی</span
+                      >
+
+                      <!-- logo ended -->
+                    </div>
+                  </div>
+                  <div class="col-sm-6 invoice-id">
+                    <div class="info">
+                      <h1 class="color-white inv-header-1">
+                        قرار داد بتن آماده
+                      </h1>
+                      <p class="color-white mb-1">
+                        {{ model?.contractHeader?.shContract }}
+                        <span>شماره قرار داد</span>
+                      </p>
+                      <p class="color-white mb-0">
+                        {{ model?.contractHeader?.contractDate }}
+                        <span>تاریخ</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="invoice-center">
+                <div class="invoice-top mt-5 mb-3">
+                  <div class="invoice-number mb-30">
+                    <h4 class="inv-title-1 text-center">مشخصات فروشنده</h4>
+                  </div>
+                  <div class="d-flex justify-content-start w-100 pr-3">
+                    <div class="d-flex justify-content-around">
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          نام شخص حقیقی/حقوقی :
+                          <span class="f-bold">
+                            {{ model?.contractHeader.companyName }}
+                          </span>
+                        </p>
+                      </div>
+
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          شماره همراه :
+                          <span class="f-bold">
+                            {{ model?.contractHeader.customerMobile }}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="invoice-top mt-5 mb-3">
+                  <div class="invoice-number mb-30">
+                    <h4 class="inv-title-1 text-center">مشخصات خریدار</h4>
+                  </div>
+                  <div class="d-flex justify-content-start w-100 pr-3">
+                    <div class="d-flex justify-content-around">
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          نام شخص حقیقی/حقوقی:
+                          <span class="f-bold">
+                            {{ model?.contractHeader.customerName }}
+                          </span>
+                        </p>
+                        <p class="invo-addr-1">نشانی کامل</p>
+                        <p class="invo-addr-1">نشانی</p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">شماره اقتصادی</p>
+                        <p class="invo-addr-1">کد پستی</p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">شماره ثبت</p>
+                        <p class="invo-addr-1">شماره ملی</p>
+                        <p class="invo-addr-1">
+                          شماره همراه:
+                          <span class="f-bold">
+                            {{ model?.contractHeader.customerMobile }}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="scroller-table">
+                  <table
+                    class="table table-hover table-responsive table-striped"
+                  >
+                    <thead>
+                      <tr class="gray-txt border-bottom">
+                        <th class="pl0 text-start" scope="col">ردیف</th>
+                        <th class="pl0 text-start" scope="col-2">شرح کالا</th>
+                        <th class="text-center" scope="col">مقدار</th>
+                        <th class="text-center" scope="col">مبلغ واحد</th>
+                        <th class="text-center" scope="col">مبلغ کل</th>
+                        <th class="text-center" scope="col">درصد تخفیف</th>
+                        <th class="text-center" scope="col">مبلغ تخفیف</th>
+                        <th class="text-center" scope="col">درصد عوارض</th>
+                        <th class="text-center" scope="col">مبلغ عوارض</th>
+                        <th class="text-center" scope="col">
+                          درصد ارزش افزوده
+                        </th>
+                        <th class="text-center" scope="col">
+                          مبلغ ارزش افزوده
+                        </th>
+                        <th class="text-center" scope="col">مبلغ خالص</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        class="fw-bold"
+                        *ngFor="let item of model?.details; let index = index"
+                      >
+                        <th scope="row">
+                          <div class="item-desc-1">
+                            <span>{{ index + 1 }}</span>
+                          </div>
+                        </th>
+                        <td class="pl0">
+                          {{ item.productName }}
+                        </td>
+                        <td class="text-center">
+                          {{ item.meghdar }}
+                        </td>
+                        <td class="text-center">
+                          {{ item.unitAmount }}
+                        </td>
+                        <td class="text-end">
+                          {{ item.totalAmount }}
+                        </td>
+                        <td class="text-end">{{ item.discountPercent }} %</td>
+                        <td class="text-end">{{ item.discountAmount }}</td>
+                        <td class="text-end">
+                          {{ item.valueAddedPercentage }} %
+                        </td>
+                        <td class="text-end">
+                          {{ item.valueAddedAmount }}
+                        </td>
+                        <td class="text-end">
+                          {{ item.complicationsPercentage }}
+                        </td>
+                        <td class="text-end">
+                          {{ item.complicationsAmount }}
+                        </td>
+                        <td class="text-end">
+                          {{ item.netAmountRow }}
+                        </td>
+                      </tr>
+                      <tr class="tr2">
+                        <td></td>
+                        <td></td>
+                        <td>12000</td>
+                        <td></td>
+                        <td>389999</td>
+                        <td></td>
+                        <td>12222</td>
+                        <td></td>
+                        <td>23232</td>
+                        <td></td>
+                        <td>32423</td>
+                        <td>234</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="mb-30 dear-client">
+                  <h3 class="inv-title-1">شرایط و ضوابط</h3>
+                  <p>
+                    {{ model?.contractHeader.contractText1 }}
+                  </p>
+                  <p class="mt-2">
+                    {{ model?.contractHeader.contractText2 }}
+                  </p>
+                </div>
+                <div class="invoice-bottom">
+                  <div class="row">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        [value]="true"
+                        [(ngModel)]="isAccepted"
+                        id="flexCheckDefault"
                       />
+                      <label
+                        class="form-check-label mr-4"
+                        for="flexCheckDefault"
+                      >
+                        تمام موارد را خواندم و موافق هستم
+                      </label>
                     </div>
-                    <span
-                      class="badge bg-success success"
-                      *ngIf="model?.contractHeader.isAccepted"
-                      >تایید شده</span
-                    >
-
-                    <span
-                      *ngIf="model?.contractHeader.isRejected"
-                      class="badge bg-danger danger"
-                      >عدم تایید</span
-                    >
-
-                    <span
-                      *ngIf="
-                        !model?.contractHeader.isRejected &&
-                        !model?.contractHeader.isAccepted
-                      "
-                      class="badge badge-warning"
-                      >در حال بررسی</span
-                    >
-
-                    <!-- logo ended -->
                   </div>
                 </div>
-                <div class="col-sm-6 invoice-id">
-                  <div class="info">
-                    <h1 class="color-white inv-header-1">قرار داد بتن آماده</h1>
-                    <p class="color-white mb-1">
-                      {{ model?.contractHeader?.shContract }}
-                      <span>شماره قرار داد</span>
-                    </p>
-                    <p class="color-white mb-0">
-                      {{ model?.contractHeader?.contractDate }}
-                      <span>تاریخ</span>
-                    </p>
+              </div>
+
+              <div class="invoice-contact clearfix">
+                <div class="row g-0">
+                  <div class="col-lg-9 col-md-11 col-sm-12">
+                    <div class="contact-info">
+                      <!-- <a href="tel:+55-4XX-634-7071"
+                        ><i class="fa fa-phone"></i> 091667343</a
+                      >
+                      <a href="tel:info@themevessel.com"
+                        ><i class="fa fa-envelope"></i> info@themevessel.com</a
+                      >
+                      <a href="tel:info@themevessel.com" class="mr-0 d-none-580"
+                        ><i class="fa fa-map-marker"></i> کاشمر همین ور
+                      </a> -->
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="invoice-center">
-              <div class="invoice-top mt-5 mb-3">
-                <div class="invoice-number mb-30">
-                  <h4 class="inv-title-1 text-center">مشخصات فروشنده</h4>
-                </div>
-                <div class="d-flex justify-content-start w-100 pr-3">
-                  <div class="d-flex justify-content-around">
-                    <div class="d-flex flex-column box-item">
-                      <p class="invo-addr-1">
-                        نام شخص حقیقی/حقوقی :
-                        <span class="f-bold">
-                          {{ model?.contractHeader.companyName }}
-                        </span>
-                      </p>
-                    </div>
-
-                    <div class="d-flex flex-column box-item">
-                      <p class="invo-addr-1">
-                        شماره همراه :
-                        <span class="f-bold">
-                          {{ model?.contractHeader.customerMobile }}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="invoice-top mt-5 mb-3">
-                <div class="invoice-number mb-30">
-                  <h4 class="inv-title-1 text-center">مشخصات خریدار</h4>
-                </div>
-                <div class="d-flex justify-content-start w-100 pr-3">
-                  <div class="d-flex justify-content-around">
-                    <div class="d-flex flex-column box-item">
-                      <p class="invo-addr-1">
-                        نام شخص حقیقی/حقوقی:
-                        <span class="f-bold">
-                          {{ model?.contractHeader.customerName }}
-                        </span>
-                      </p>
-                      <p class="invo-addr-1">نشانی کامل</p>
-                      <p class="invo-addr-1">نشانی</p>
-                    </div>
-                    <div class="d-flex flex-column box-item">
-                      <p class="invo-addr-1">شماره اقتصادی</p>
-                      <p class="invo-addr-1">کد پستی</p>
-                    </div>
-                    <div class="d-flex flex-column box-item">
-                      <p class="invo-addr-1">شماره ثبت</p>
-                      <p class="invo-addr-1">شماره ملی</p>
-                      <p class="invo-addr-1">
-                        شماره همراه:
-                        <span class="f-bold">
-                          {{ model?.contractHeader.customerMobile }}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="scroller-table">
-                <table class="table table-hover table-responsive table-striped">
-                  <thead>
-                    <tr class="gray-txt border-bottom">
-                      <th class="pl0 text-start" scope="col">ردیف</th>
-                      <th class="pl0 text-start" scope="col-2">شرح کالا</th>
-                      <th class="text-center" scope="col">مقدار</th>
-                      <th class="text-center" scope="col">مبلغ واحد</th>
-                      <th class="text-center" scope="col">مبلغ کل</th>
-                      <th class="text-center" scope="col">درصد تخفیف</th>
-                      <th class="text-center" scope="col">مبلغ تخفیف</th>
-                      <th class="text-center" scope="col">درصد عوارض</th>
-                      <th class="text-center" scope="col">مبلغ عوارض</th>
-                      <th class="text-center" scope="col">درصد ارزش افزوده</th>
-                      <th class="text-center" scope="col">مبلغ ارزش افزوده</th>
-                      <th class="text-center" scope="col">مبلغ خالص</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr
-                      class="fw-bold"
-                      *ngFor="let item of model?.details; let index = index"
-                    >
-                      <th scope="row">
-                        <div class="item-desc-1">
-                          <span>{{ index + 1 }}</span>
-                        </div>
-                      </th>
-                      <td class="pl0">
-                        {{ item.productName }}
-                      </td>
-                      <td class="text-center">
-                        {{ item.meghdar }}
-                      </td>
-                      <td class="text-center">
-                        {{ item.unitAmount }}
-                      </td>
-                      <td class="text-end">
-                        {{ item.totalAmount }}
-                      </td>
-                      <td class="text-end">{{ item.discountPercent }} %</td>
-                      <td class="text-end">{{ item.discountAmount }}</td>
-                      <td class="text-end">
-                        {{ item.valueAddedPercentage }} %
-                      </td>
-                      <td class="text-end">
-                        {{ item.valueAddedAmount }}
-                      </td>
-                      <td class="text-end">
-                        {{ item.complicationsPercentage }}
-                      </td>
-                      <td class="text-end">
-                        {{ item.complicationsAmount }}
-                      </td>
-                      <td class="text-end">
-                        {{ item.netAmountRow }}
-                      </td>
-                    </tr>
-                    <tr class="tr2">
-                      <td></td>
-                      <td></td>
-                      <td>12000</td>
-                      <td></td>
-                      <td>389999</td>
-                      <td></td>
-                      <td>12222</td>
-                      <td></td>
-                      <td>23232</td>
-                      <td></td>
-                      <td>32423</td>
-                      <td>234</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="mb-30 dear-client">
-                <h3 class="inv-title-1">شرایط و ضوابط</h3>
-                <p>
-                  {{ model?.contractHeader.contractText1 }}
-                </p>
-                <p class="mt-2">
-                  {{ model?.contractHeader.contractText2 }}
-                </p>
-              </div>
-              <div class="invoice-bottom">
-                <div class="row">
-                  <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="checkbox"
-                      [value]="true"
-                      [(ngModel)]="isAccepted"
-                      id="flexCheckDefault"
-                    />
-                    <label class="form-check-label mr-4" for="flexCheckDefault">
-                      تمام موارد را خواندم و موافق هستم
-                    </label>
-                  </div>
-                </div>
-              </div>
+            <div class="invoice-btn-section clearfix d-print-none">
+              <a href="javascript:window.print()" class="btn btn-lg btn-print">
+                <i class="fa fa-print"></i>چاپ
+              </a>
+              <button
+                [disabled]="!isAccepted"
+                id="invoice_download_btn"
+                class="btn btn-lg btn-success"
+                (click)="acceptContract()"
+              >
+                <i class="fa-solid fa-square-check"></i>تایید
+              </button>
+              <button
+                id="invoice_download_btn"
+                class="btn btn-lg btn-danger btn-theme"
+                (click)="rejectContract()"
+              >
+                <i class="fa-solid fa-thumbs-down"></i>عدم تایید
+              </button>
             </div>
-
-            <div class="invoice-contact clearfix">
-              <div class="row g-0">
-                <div class="col-lg-9 col-md-11 col-sm-12">
-                  <div class="contact-info">
-                    <!-- <a href="tel:+55-4XX-634-7071"
-                      ><i class="fa fa-phone"></i> 091667343</a
-                    >
-                    <a href="tel:info@themevessel.com"
-                      ><i class="fa fa-envelope"></i> info@themevessel.com</a
-                    >
-                    <a href="tel:info@themevessel.com" class="mr-0 d-none-580"
-                      ><i class="fa fa-map-marker"></i> کاشمر همین ور
-                    </a> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="invoice-btn-section clearfix d-print-none">
-            <a href="javascript:window.print()" class="btn btn-lg btn-print">
-              <i class="fa fa-print"></i>چاپ
-            </a>
-            <button
-              [disabled]="!isAccepted"
-              id="invoice_download_btn"
-              class="btn btn-lg btn-success"
-              (click)="acceptContract()"
-            >
-              <i class="fa-solid fa-square-check"></i>تایید
-            </button>
-            <button
-              id="invoice_download_btn"
-              class="btn btn-lg btn-danger btn-theme"
-              (click)="rejectContract()"
-            >
-              <i class="fa-solid fa-thumbs-down"></i>عدم تایید
-            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>

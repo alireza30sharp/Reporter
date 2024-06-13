@@ -48,7 +48,9 @@
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "src/app/@theme/styles/styles.scss"
             ],
-            
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/assets/base"]
+            },
             "scripts": [
               "src/assets/scripts/stimulsoft.reports.engine.js",
               "src/assets/scripts/stimulsoft.reports.export.js",
