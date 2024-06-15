@@ -21,6 +21,12 @@ export class ContractComponent implements OnInit {
   loading: boolean = false;
   model: ContractInterface;
   isAccepted: boolean = false;
+  totalMeghdar=0;
+  totalTotalAmount=0
+  totalDiscountAmount=0;
+  totalValueAddedAmount=0;
+  totalnetAmountRow=0;
+  totalcomplicationsAmount=0;
   // variablesInReport: Array<VariablesReportInterFace> = [
   //   { paramName: "NameCompony", paramValue: "صورت حساب اشکان جان" },
   // ];
@@ -33,6 +39,7 @@ export class ContractComponent implements OnInit {
     this._activatedRoute.params.subscribe((params) => {
       this.eid = params["trackingCode"];
       this.getContractByTrackingCode();
+    
     });
   }
 
@@ -47,8 +54,16 @@ export class ContractComponent implements OnInit {
       )
       .subscribe((res) => {
         if (res.isOk) {
-          debugger;
           this.model = res.data;
+          if(this.model.details){
+            this.totalMeghdar = this.model.details.reduce((sum, detail) => sum + (+detail.meghdar), 0);
+            this.totalTotalAmount = this.model.details.reduce((sum, detail) => sum + detail.totalAmount, 0);
+            this.totalDiscountAmount = this.model.details.reduce((sum, detail) => sum + detail.discountAmount, 0);
+            this.totalValueAddedAmount = this.model.details.reduce((sum, detail) => sum + detail.valueAddedAmount, 0);
+            this.totalnetAmountRow = this.model.details.reduce((sum, detail) => sum + detail.netAmountRow, 0);
+             this.totalcomplicationsAmount= this.model.details.reduce((sum, detail) => sum + detail.complicationsAmount, 0);
+
+          }
         } else {
           this.message = res.messages.join(" ");
         }
