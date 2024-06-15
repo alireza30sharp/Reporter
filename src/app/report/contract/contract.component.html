@@ -15,7 +15,7 @@
                       <!-- logo started -->
                       <div class="logo">
                         <img
-                          src="../../../assets/images/logos/logo-50.png"
+                          src="../../../assets/images/logos/logo.png"
                           alt="logo"
                         />
                       </div>
@@ -28,7 +28,7 @@
                       <span
                         *ngIf="model?.contractHeader.isRejected"
                         class="badge bg-danger danger"
-                        >عدم تایید</span
+                        >تاییده نشده</span
                       >
 
                       <span
@@ -186,106 +186,226 @@
                           {{ item.netAmountRow }}
                         </td>
                       </tr>
-                      <tr class="tr2">
-                        <td class="text-center f-w-600 active-color">جمع کل مقدار
 
+                      <tr class="tr2">
+                        <td colspan="2" class="f-w-600 active-color">جمع کل</td>
+
+                        <td>{{ totalMeghdar }}</td>
+                        <td></td>
+                        <td>{{ totalTotalAmount }}</td>
+                        <td></td>
+                        <td>{{ totalDiscountAmount }}</td>
+                        <td></td>
+                        <td>{{ totalValueAddedAmount }}</td>
+                        <td></td>
+                        <td>
+                          {{ totalcomplicationsAmount }}
                         </td>
-                        <td class="f-w-600 text-end active-color">{{totalMeghdar  }} ریال </td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>          
-                    </tr>
-                    <tr class="tr2">
-                      <td class="text-center f-w-600 active-color">جمع مبلغ کل</td>
-                      <td class="f-w-600 text-end active-color">{{totalTotalAmount  }} ریال </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-           
-                  </tr>
-                  <tr class="tr2">
-                    <td class="text-center f-w-600 active-color">جمع  مبلغ تخفیف</td>
-                    <td class="f-w-600 text-end active-color">{{totalDiscountAmount  }} ریال </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-  
-                </tr>
-                <tr class="tr2">
-                  <td class="text-center f-w-600 active-color">جمع مبلغ عوارض</td>
-                  <td class="f-w-600 text-end active-color">{{totalValueAddedAmount  }} ریال </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr class="tr2">
-                <td class="text-center f-w-600 active-color">جمع مبلغ ارزش افزوده</td>
-                <td class="f-w-600 text-end active-color">{{totalcomplicationsAmount  }} ریال </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr class="tr2">
-              <td class="text-center f-w-600 active-color">جمع مبلغ خالص
-              </td>
-              <td class="f-w-600 text-end active-color">{{totalnetAmountRow  }} ریال </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-          </tr>
-                    <!-- <tr class="tr2">
-                      <td></td>
-                      <td></td>
-                      <td>12000</td>
-                      <td></td>
-                      <td>389999</td>
-                      <td></td>
-                      <td>12222</td>
-                      <td></td>
-                      <td>23232</td>
-                      <td></td>
-                      <td>32423</td>
-                      <td>234</td>
-                    </tr> -->
-              
+                        <td>{{ totalnetAmountRow }}</td>
+                      </tr>
                     </tbody>
                   </table>
+                </div>
+                <!-----------------------------حمل-->
+                <div class="invoice-top mt-5 mb-3">
+                  <div class="invoice-number mb-30">
+                    <h4 class="inv-title-1 text-center">اطلاعات حمل</h4>
+                  </div>
+                  <div class="d-flex justify-content-start w-100 pr-3">
+                    <div class="d-flex justify-content-around holder">
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          نوع محاسبه حمل :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .pumpCalculationType
+                            }}
+                          </span>
+                        </p>
+                      </div>
+
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          مبلغ واحد حمل :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .carryingUnitAmount
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          محاسبه کسری تا:
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .calculateTheCarryingAmountTo
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          مبلغ واخد:
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .carryingUnitAmount
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-----------------------حمل اتمام-->
+                <!-----------------------------پمپ-->
+                <div class="invoice-top mt-5 mb-3">
+                  <div class="invoice-number mb-30">
+                    <h4 class="inv-title-1 text-center">اطلاعات پمپ</h4>
+                  </div>
+                  <div class="d-flex justify-content-start w-100 pr-3">
+                    <div class="d-flex justify-content-around holder">
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          نوع پمپ :
+                          <span class="f-bold">
+                            {{ model?.contractConcreteSupplementary.pumpType }}
+                          </span>
+                        </p>
+                      </div>
+
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          نوع محاسبه پمپ :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .pumpCalculationType
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          مبلغ واحد پمپ :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .pumpUnitAmount
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          مبلغ واحد کسری پمپ:
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .unitAmountOfPumpDeficit
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          محاسبه کسری پمپ تا:
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .pumpDeficitAmountTo
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          مبلغ واحد انعام:
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .pumpTipUnitAmount
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-----------------------پمپ اتمام-->
+                  <!-----------------------------رده مقاومتی-->
+                  <div class="invoice-top mt-5 mb-3">
+            
+                    <div class="d-flex justify-content-start w-100 pr-3">
+                      <div class="d-flex justify-content-around holder">
+                        <div class="d-flex flex-column box-item">
+                          <p class="invo-addr-1">
+                            رده مقاومتی :
+                            <span class="f-bold">
+                              {{ model?.contractConcreteSupplementary.resistanceCategory }}
+                            </span>
+                          </p>
+                        </div>
+  
+                        <div class="d-flex flex-column box-item">
+                          <p class="invo-addr-1">
+                            مقدار سیمان :
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .theAmountOfCement
+                              }}
+                            </span>
+                          </p>
+                        </div>
+                        <div class="d-flex flex-column box-item">
+                          <p class="invo-addr-1">
+                            مقدار آب:
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .waterToCementRatio
+                              }}
+                            </span>
+                          </p>
+                        </div>
+                        <div class="d-flex flex-column box-item">
+                          <p class="invo-addr-1">
+                            حداقل مقاومت :
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .minimumResistance
+                              }}
+                            </span>
+                          </p>
+                        </div>
+                        <div class="d-flex flex-column box-item">
+                          <p class="invo-addr-1">
+                            نوع سیمان :
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .typeOfCement
+                              }}
+                            </span>
+                          </p>
+                        </div>
+              
+                      </div>
+                    </div>
+                  </div>
+                  <!-----------------------رده مقاومتی اتمام-->
+                            <!-----------------------آدرس پروژه   اتمام-->
+                <div class="mb-30 dear-client">
+                  <h3 class="inv-title-1">آدرس پروژه </h3>
+                  <p>
+                    {{ model?.contractConcreteSupplementary.projectAddress }}
+                  </p>
                 </div>
                 <div class="mb-30 dear-client">
                   <h3 class="inv-title-1">شرایط و ضوابط</h3>
