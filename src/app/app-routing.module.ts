@@ -10,6 +10,7 @@ import {
 } from "@nebular/auth";
 
 export const routes: Routes = [
+  { path: "", redirectTo: "report", pathMatch: "full" },
   {
     path: "pages",
     loadChildren: () =>
@@ -20,8 +21,6 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./report/report.module").then((m) => m.ReportModule),
   },
-  { path: "", redirectTo: "report", pathMatch: "full" },
-  { path: "**", redirectTo: "report" },
 ];
 
 const config: ExtraOptions = {

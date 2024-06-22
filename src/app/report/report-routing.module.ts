@@ -10,6 +10,7 @@ const routes: Routes = [
     path: "",
     component: ReportComponent,
     children: [
+      { path: "", redirectTo: "factor/12", pathMatch: "full" },
       {
         path: "factor/:eid",
         component: FactorComponent,

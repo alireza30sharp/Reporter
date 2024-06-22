@@ -9,6 +9,7 @@ import { SharedModule } from "../shared/shared.module";
 import { ContractComponent } from "./contract/contract.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { ParagraphPipe } from "./pipe/paragraph";
 
 @NgModule({
   imports: [
@@ -19,6 +20,11 @@ import { FormsModule } from "@angular/forms";
     NbMenuModule,
     SharedModule.forChild(),
   ],
-  declarations: [ReportComponent, FactorComponent, ContractComponent],
+  declarations: [
+    ReportComponent,
+    FactorComponent,
+    ContractComponent,
+    ParagraphPipe,
+  ],
 })
 export class ReportModule {}

@@ -337,84 +337,88 @@
                   </div>
                 </div>
                 <!-----------------------پمپ اتمام-->
-                  <!-----------------------------رده مقاومتی-->
-                  <div class="invoice-top mt-5 mb-3">
-            
-                    <div class="d-flex justify-content-start w-100 pr-3">
-                      <div class="d-flex justify-content-around holder">
-                        <div class="d-flex flex-column box-item">
-                          <p class="invo-addr-1">
-                            رده مقاومتی :
-                            <span class="f-bold">
-                              {{ model?.contractConcreteSupplementary.resistanceCategory }}
-                            </span>
-                          </p>
-                        </div>
-  
-                        <div class="d-flex flex-column box-item">
-                          <p class="invo-addr-1">
-                            مقدار سیمان :
-                            <span class="f-bold">
-                              {{
-                                model?.contractConcreteSupplementary
-                                  .theAmountOfCement
-                              }}
-                            </span>
-                          </p>
-                        </div>
-                        <div class="d-flex flex-column box-item">
-                          <p class="invo-addr-1">
-                            مقدار آب:
-                            <span class="f-bold">
-                              {{
-                                model?.contractConcreteSupplementary
-                                  .waterToCementRatio
-                              }}
-                            </span>
-                          </p>
-                        </div>
-                        <div class="d-flex flex-column box-item">
-                          <p class="invo-addr-1">
-                            حداقل مقاومت :
-                            <span class="f-bold">
-                              {{
-                                model?.contractConcreteSupplementary
-                                  .minimumResistance
-                              }}
-                            </span>
-                          </p>
-                        </div>
-                        <div class="d-flex flex-column box-item">
-                          <p class="invo-addr-1">
-                            نوع سیمان :
-                            <span class="f-bold">
-                              {{
-                                model?.contractConcreteSupplementary
-                                  .typeOfCement
-                              }}
-                            </span>
-                          </p>
-                        </div>
-              
+                <!-----------------------------رده مقاومتی-->
+                <div class="invoice-top mt-5 mb-3">
+                  <div class="d-flex justify-content-start w-100 pr-3">
+                    <div class="d-flex justify-content-around holder">
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          رده مقاومتی :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .resistanceCategory
+                            }}
+                          </span>
+                        </p>
+                      </div>
+
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          مقدار سیمان :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .theAmountOfCement
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          مقدار آب:
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .waterToCementRatio
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          حداقل مقاومت :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary
+                                .minimumResistance
+                            }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column box-item">
+                        <p class="invo-addr-1">
+                          نوع سیمان :
+                          <span class="f-bold">
+                            {{
+                              model?.contractConcreteSupplementary.typeOfCement
+                            }}
+                          </span>
+                        </p>
                       </div>
                     </div>
                   </div>
-                  <!-----------------------رده مقاومتی اتمام-->
-                            <!-----------------------آدرس پروژه   اتمام-->
+                </div>
+                <!-----------------------رده مقاومتی اتمام-->
+                <!-----------------------آدرس پروژه   اتمام-->
                 <div class="mb-30 dear-client">
-                  <h3 class="inv-title-1">آدرس پروژه </h3>
+                  <h3 class="inv-title-1">آدرس پروژه</h3>
                   <p>
                     {{ model?.contractConcreteSupplementary.projectAddress }}
                   </p>
                 </div>
                 <div class="mb-30 dear-client">
                   <h3 class="inv-title-1">شرایط و ضوابط</h3>
-                  <p>
-                    {{ model?.contractHeader.contractText1 }}
-                  </p>
-                  <p class="mt-2">
-                    {{ model?.contractHeader.contractText2 }}
-                  </p>
+                  <div
+                    [innerHTML]="
+                      model?.contractHeader.contractText1 | paragraph
+                    "
+                  ></div>
+                  <div
+                    [innerHTML]="
+                      model?.contractHeader.contractText2 | paragraph
+                    "
+                  ></div>
                 </div>
                 <div class="invoice-bottom">
                   <div class="row">
