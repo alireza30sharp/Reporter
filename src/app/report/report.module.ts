@@ -10,6 +10,7 @@ import { ContractComponent } from "./contract/contract.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ParagraphPipe } from "./pipe/paragraph";
+import { separatorPipe } from "./pipe/separator";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { ParagraphPipe } from "./pipe/paragraph";
     FactorComponent,
     ContractComponent,
     ParagraphPipe,
+    separatorPipe,
   ],
 })
 export class ReportModule {}
