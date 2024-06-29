@@ -7,7 +7,9 @@ import { ContractInterface } from "../interface/contarct";
 import { ModalService, ToastService } from "../../shared/services";
 import { finalize } from "rxjs";
 import { ConfirmInterFace } from "../../shared/ki-components/ki-confirmation/confirm.interface";
-
+import { UserAuthService } from "../../shared/services/user-auth.service";
+import { trackingCode } from "../../shared/models";
+import { RejectContractFormModalCompone } from "../components/templates/reject-contract-form-modal/reject-contract-form-modal.component";
 @Component({
   selector: "ngx-contract",
   templateUrl: "./contract.component.html",
@@ -18,10 +20,12 @@ export class ContractComponent implements OnInit {
   data: FactorInterFace;
   isMobile: boolean = false;
   eid: any;
+  pen: string;
   dataSetName: any = "Data";
   message: string = "";
   loading: boolean = false;
   model: ContractInterface;
+  tracking = new trackingCode();
   isAccepted: boolean = false;
   totalMeghdar = 0;
   totalTotalAmount = 0;
@@ -36,23 +40,26 @@ export class ContractComponent implements OnInit {
     private _reportService: ReportService,
     private _activatedRoute: ActivatedRoute,
     private _toastService: ToastService,
-    private _modalService: ModalService
+    private _modalService: ModalService,
+    readonly authSvc: UserAuthService
   ) {
     if ((window as any).isMobile) {
       this.isMobile = true;
     }
-  }
-  ngOnInit(): void {
-    this._activatedRoute.params.subscribe((params) => {
-      this.eid = params["trackingCode"];
-      this.getContractByTrackingCode();
+    this.authSvc.trackingCode$.subscribe((res) => {
+      this.getContractByTrackingCode(res);
     });
   }
+  ngOnInit(): void {}
 
-  getContractByTrackingCode() {
+  getContractByTrackingCode(tracking: trackingCode) {
     this.loading = true;
+    this.tracking = Object.assign({}, tracking);
     this._reportService
-      .getContractByTrackingCode(this.eid)
+      .getContractByTrackingCodeAndPinCode(
+        tracking.pinCode,
+        tracking.trackingCode
+      )
       .pipe(
         finalize(() => {
           this.loading = false;
@@ -126,22 +133,14 @@ export class ContractComponent implements OnInit {
     });
   }
   rejectContract() {
-    this._reportService.rejectContract(this.eid).subscribe({
-      next: (res) => {
-        if (res.isOk) {
-          this._toastService.success(res.data.message);
-        }
-      },
-      error: (err) => {
-        let msg = "";
-        if (err.error.messages) {
-          this._toastService.error(err.error.messages);
-          msg = err.error.messages.join(" ");
-        } else if (err.error.message) {
-          this._toastService.error(err.error.message);
-          msg = err.error.message.join(" ");
-        }
-      },
-    });
+    this._modalService
+      .open(
+        RejectContractFormModalCompone,
+        "lg",
+        { trackingCode: this.tracking.trackingCode },
+        true
+      )
+      .then((value) => {})
+      .catch((err) => {});
   }
 }

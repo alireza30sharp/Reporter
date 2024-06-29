@@ -21,6 +21,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import("./report/report.module").then((m) => m.ReportModule),
   },
+  {
+    path: "otp/:trackingCode",
+    loadChildren: () => import("./idp/idp.module").then((m) => m.IdpModule),
+  },
 ];
 
 const config: ExtraOptions = {

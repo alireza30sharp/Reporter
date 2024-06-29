@@ -4,13 +4,13 @@ import { ReportComponent } from "./report.component";
 import { FactorComponent } from "./factor/factor.component";
 import { NotFoundComponent } from "../pages/miscellaneous/not-found/not-found.component";
 import { ContractComponent } from "./contract/contract.component";
+import { AdminAuthGuard } from "./services/admin-auth.guard";
 
 const routes: Routes = [
   {
     path: "",
     component: ReportComponent,
     children: [
-      { path: "", redirectTo: "factor/12", pathMatch: "full" },
       {
         path: "factor/:eid",
         component: FactorComponent,
@@ -18,7 +18,9 @@ const routes: Routes = [
       {
         path: "contract/:trackingCode",
         component: ContractComponent,
+        canActivate: [AdminAuthGuard],
       },
+
       {
         path: "**",
         component: NotFoundComponent,

@@ -9,7 +9,6 @@ import {
   SimpleChanges,
   ViewChild,
 } from "@angular/core";
-import { SizeType } from "../../types/size.type";
 import { NbComponentShape, NbComponentSize } from "@nebular/theme";
 
 @Component({

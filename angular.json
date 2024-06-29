@@ -28,6 +28,7 @@
               }
             ],
             "styles": [
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.common.css",
               "node_modules/@devexpress/analytics-core/dist/css/dx-analytics.light.css",
               "node_modules/devextreme/dist/css/dx.material.purple.light.css",

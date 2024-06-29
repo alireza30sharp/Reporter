@@ -40,6 +40,9 @@ import { DEFAULT_THEME } from "./styles/theme.default";
 import { COSMIC_THEME } from "./styles/theme.cosmic";
 import { CORPORATE_THEME } from "./styles/theme.corporate";
 import { DARK_THEME } from "./styles/theme.dark";
+import { SharedModule } from "../shared/shared.module";
+import { NgSelectModule } from "@ng-select/ng-select";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -73,7 +76,13 @@ const PIPES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    CommonModule,
+    ...NB_MODULES,
+  ],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
   declarations: [...COMPONENTS, ...PIPES],
 })
@@ -88,7 +97,7 @@ export class ThemeModule {
           },
           [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME],
           DEFAULT_MEDIA_BREAKPOINTS,
-          NbLayoutDirection.LTR
+          NbLayoutDirection.RTL
         ).providers,
       ],
     };

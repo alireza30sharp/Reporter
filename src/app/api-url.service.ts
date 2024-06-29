@@ -14,7 +14,13 @@ export class ApiUrlService {
   };
   contract = {
     GetContractByTrackingCode: BASE_URL + "Contract/GetContractByTrackingCode",
+    GetContractByTrackingCodeAndPinCode:
+      BASE_URL + "Contract/GetContractByTrackingCodeAndPinCode",
     AcceptContract: BASE_URL + "Contract/AcceptContract",
     RejectContract: BASE_URL + "Contract/RejectContract",
+  };
+  clientPrerequisits = {
+    GetClientPrerequisits:
+      BASE_URL + "ClientPrerequisits/GetClientPrerequisits",
   };
 }

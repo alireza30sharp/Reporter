@@ -390,36 +390,33 @@
                   <div class="row">
                     <div class="col-lg-4 col-sm-12 box-item">
                       <p class="invo-addr-1">
-                        جمع کل قرارداد :
+                        جمع کل مقدار :
                         <span class="f-bold">{{
-                          model?.contractHeader.totalAmount | separator
+                          totalMeghdar | separator
                         }}</span>
                       </p>
                     </div>
                     <div class="col-lg-4 col-sm-12 box-item">
                       <p class="invo-addr-1">
-                        مبلغ کل حمل :
+                        مبلغ کل :
                         <span class="f-bold">{{
-                          model?.contractConcreteSupplementary
-                            .carryingTotalAmount | separator
+                          totalTotalAmount | separator
                         }}</span>
                       </p>
                     </div>
                     <div class="col-lg-4 col-sm-12 box-item">
                       <p class="invo-addr-1">
-                        مبلغ کل پمپ :
+                        مبلغ کل تخفیف :
                         <span class="f-bold">{{
-                          model?.contractConcreteSupplementary.pumpTotalAmount
-                            | separator
+                          totalDiscountAmount | separator
                         }}</span>
                       </p>
                     </div>
                     <div class="col-lg-4 col-sm-12 box-item">
                       <p class="invo-addr-1">
-                        مبلغ نهایی قرارداد :
+                        مبلغ کل عوارض:
                         <span class="f-bold">{{
-                          model?.contractConcreteSupplementary.netContractAmount
-                            | separator
+                          totalValueAddedAmount | separator
                         }}</span>
                       </p>
                     </div>

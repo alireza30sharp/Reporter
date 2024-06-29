@@ -5,6 +5,8 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class separatorPipe implements PipeTransform {
   transform(value: number): string {
-    return value.toLocaleString("fa-IR");
+    if (value) {
+      return value.toLocaleString("fa-IR");
+    } else return "0";
   }
 }

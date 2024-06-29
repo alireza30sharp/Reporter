@@ -1,0 +1,40 @@
+<nb-card accent="success">
+  <nb-card-header>لطفا فیلد های اجباری را وارد نمایید</nb-card-header>
+  <nb-card-body>
+    <form
+      #companyForm="ngForm"
+      (ngSubmit)="!companyForm.invalid && submitHandler(companyForm)"
+    >
+      <div class="row">
+        <ki-form-group
+          [showRequireSign]="true"
+          [errorMessage]="rejected.errors?.required ? 'فیلد اجباری' : ''"
+          [hideError]="
+            !(
+              (rejected.touched || companyForm.submitted) &&
+              rejected.errors?.required
+            )
+          "
+          class="col-6"
+          [label]="'گزینه های مورد نظر'"
+        >
+          <ki-select
+            #rejected="ngModel"
+            name="rejected"
+            [placeholder]="'علت رد قرار داد'"
+            [options]="genderOptions"
+            [allowClear]="true"
+            [multiple]="true"
+            [bindLabel]="'label'"
+            [bindValue]="'label'"
+            required
+            [(ngModel)]="rejectedList"
+          >
+          </ki-select>
+        </ki-form-group>
+      </div>
+
+      <input type="submit" [hidden]="true" [attr.id]="submitButtonId" />
+    </form>
+  </nb-card-body>
+</nb-card>

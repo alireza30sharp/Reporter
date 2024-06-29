@@ -16,9 +16,10 @@ import {
   NbWindowModule,
 } from "@nebular/theme";
 import { SharedModule } from "./shared/shared.module";
+import { TestComponent } from './test/test.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, TestComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

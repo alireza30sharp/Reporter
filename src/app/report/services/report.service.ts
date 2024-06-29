@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { rejectedDto } from "../../report/models";
 
 import { ApiUrlService } from "../../api-url.service";
 import { Data, response } from "../../shared/models";
@@ -17,10 +18,18 @@ export class ReportService {
     });
   }
   getContractByTrackingCode(Id: number) {
-    return this.$http.get<response<ContractInterface>>(
+    return this.$http.get<response<any>>(
       this.urlSvc.contract.GetContractByTrackingCode,
       {
         params: { TrackingCode: Id },
+      }
+    );
+  }
+  getContractByTrackingCodeAndPinCode(pinCode: string, Id: string) {
+    return this.$http.get<response<ContractInterface>>(
+      this.urlSvc.contract.GetContractByTrackingCodeAndPinCode,
+      {
+        params: { PinCode: pinCode, TrackingCode: Id },
       }
     );
   }
@@ -29,9 +38,10 @@ export class ReportService {
       trackingCode: Id,
     });
   }
-  rejectContract(Id: number) {
-    return this.$http.post<response<any>>(this.urlSvc.contract.RejectContract, {
-      trackingCode: Id,
-    });
+  rejectContract(rejectedDto: rejectedDto) {
+    return this.$http.post<response<any>>(
+      this.urlSvc.contract.RejectContract,
+      rejectedDto
+    );
   }
 }

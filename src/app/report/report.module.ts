@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { NbMenuModule } from "@nebular/theme";
-
 import { ThemeModule } from "../@theme/theme.module";
 import { ReportComponent } from "./report.component";
 import { ReportRoutingModule } from "./report-routing.module";
@@ -11,7 +10,8 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { ParagraphPipe } from "./pipe/paragraph";
 import { separatorPipe } from "./pipe/separator";
-
+import { RejectContractFormComponent } from "./components/organisms";
+import { RejectContractFormModalCompone } from "./components/templates/reject-contract-form-modal/reject-contract-form-modal.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -25,6 +25,8 @@ import { separatorPipe } from "./pipe/separator";
     ReportComponent,
     FactorComponent,
     ContractComponent,
+    RejectContractFormComponent,
+    RejectContractFormModalCompone,
     ParagraphPipe,
     separatorPipe,
   ],

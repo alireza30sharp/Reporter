@@ -1,0 +1,21 @@
+<ki-modal
+  [title]="'علت رد قرار داد'"
+  [showCancelButton]="true"
+  (onCloseCallback)="cancelHandler()"
+  [showPrimaryButton]="true"
+  [primaryButtonFor]="submitButtonId"
+  [hideHeaderActions]="true"
+  [showPrimaryButtonLoading]="isLoading || isLoadingSaveChange"
+>
+  <app-skeleton-form-loading
+    *ngIf="isLoading; else content"
+  ></app-skeleton-form-loading>
+  <ng-template #content>
+    <app-reject-contract-form
+      [submitButtonId]="submitButtonId"
+      [model]="initialData"
+      (submitCallback)="saveHandler($event)"
+    >
+    </app-reject-contract-form>
+  </ng-template>
+</ki-modal>

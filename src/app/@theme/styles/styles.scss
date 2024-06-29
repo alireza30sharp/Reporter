@@ -1,3 +1,45 @@
+// Font-Size Css Angular Dynamic:
+
+@for $i from 10 through 60 {
+  .f-#{$i} {
+    font-size: #{$i}#{px} !important;
+  }
+}
+// Border-Radius Css Angular Dynamic:
+@for $i from 0 through 30 {
+  .radius-#{$i} {
+    border-radius: #{$i}#{px} !important;
+  }
+}
+
+// Width-% Css Angular Dynamic:
+@for $i from 0 through 1000 {
+  .w-#{$i} {
+    width: #{$i}#{"%"} !important;
+  }
+}
+
+// Width-px Css Angular Dynamic:
+@for $i from 0 through 1000 {
+  .w-#{$i}px {
+    width: #{$i}#{px} !important;
+  }
+}
+
+// Height-px Css Angular Dynamic:
+@for $i from 0 through 1000 {
+  .h-#{$i}px {
+    height: #{$i}#{px} !important;
+  }
+}
+
+// Height-px Css Angular Dynamic:
+@for $i from -5 through 10 {
+  .z-index-#{$i} {
+    z-index: #{$i} !important;
+  }
+}
+
 @font-face {
   font-family: iranYekanNumber;
   src: url(../../../assets/fonts/ttf/iranyekanwebregularfanum.ttf) format("ttf"),

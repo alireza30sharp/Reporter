@@ -1,0 +1,39 @@
+<ng-container *ngIf="loading; else tem">
+  <ngx-loading></ngx-loading>
+</ng-container>
+<ng-template #tem>
+  <div
+    class="container height-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="position-relative">
+      <div class="card p-2 text-center">
+        <h6 class="f-16">کد چهار رقمی ارسال شده رو وارد کنید</h6>
+        <div>
+          <span>ارسال کد به شماره همراه</span>
+          <small>*******{{ lastFourDigitPhoneNumber }}</small>
+        </div>
+        <div
+          id="otp"
+          class="inputs d-flex flex-row justify-content-center mt-2"
+        >
+          <app-pin-code (emitCode)="verifyOtp($event)"> </app-pin-code>
+        </div>
+        <div
+          class="d-flex justify-content-center align-items-center w-100 mt-5"
+        >
+          <div *ngIf="otpTimer; else resendOtp_tpl" class="f-12 gray">
+            {{ otpTimerTextAction$ | async }} مانده تا دریافت مجدد کد
+          </div>
+          <ng-template #resendOtp_tpl>
+            <div class="f-12 blue pointer">ارسال مجدد کد</div>
+          </ng-template>
+        </div>
+        <div class="mt-4">
+          <button class="btn btn-danger px-4 validate text-center">
+            تایید
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
