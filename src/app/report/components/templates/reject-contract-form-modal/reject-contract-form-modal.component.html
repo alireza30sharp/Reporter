@@ -1,5 +1,5 @@
 <ki-modal
-  [title]="'علت رد قرار داد'"
+  [title]="!typePage ? 'علت رد' : 'علت رد قرار داد'"
   [showCancelButton]="true"
   (onCloseCallback)="cancelHandler()"
   [showPrimaryButton]="true"

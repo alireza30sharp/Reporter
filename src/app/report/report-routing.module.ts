@@ -5,6 +5,7 @@ import { FactorComponent } from "./factor/factor.component";
 import { NotFoundComponent } from "../pages/miscellaneous/not-found/not-found.component";
 import { ContractComponent } from "./contract/contract.component";
 import { AdminAuthGuard } from "./services/admin-auth.guard";
+import { ConfirmationsComponent } from "./confirmations/confirmations.component";
 
 const routes: Routes = [
   {
@@ -18,9 +19,11 @@ const routes: Routes = [
       {
         path: "contract/:trackingCode",
         component: ContractComponent,
-        canActivate: [AdminAuthGuard],
       },
-
+      {
+        path: "confirmations/:trackingCode",
+        component: ConfirmationsComponent,
+      },
       {
         path: "**",
         component: NotFoundComponent,

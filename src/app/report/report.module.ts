@@ -12,6 +12,7 @@ import { ParagraphPipe } from "./pipe/paragraph";
 import { separatorPipe } from "./pipe/separator";
 import { RejectContractFormComponent } from "./components/organisms";
 import { RejectContractFormModalCompone } from "./components/templates/reject-contract-form-modal/reject-contract-form-modal.component";
+import { ConfirmationsComponent } from "./confirmations/confirmations.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -25,6 +26,7 @@ import { RejectContractFormModalCompone } from "./components/templates/reject-co
     ReportComponent,
     FactorComponent,
     ContractComponent,
+    ConfirmationsComponent,
     RejectContractFormComponent,
     RejectContractFormModalCompone,
     ParagraphPipe,

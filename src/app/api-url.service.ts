@@ -23,4 +23,12 @@ export class ApiUrlService {
     GetClientPrerequisits:
       BASE_URL + "ClientPrerequisits/GetClientPrerequisits",
   };
+  OnlineConfirmations = {
+    GetOnlineConfirmationsByTrackingCode:
+      BASE_URL + "OnlineConfirmations/GetOnlineConfirmationsByTrackingCode",
+    AcceptOnlineConfirmations:
+      BASE_URL + "OnlineConfirmations/AcceptOnlineConfirmations",
+    RejectOnlineConfirmations:
+      BASE_URL + "OnlineConfirmations/RejectOnlineConfirmations",
+  };
 }

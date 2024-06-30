@@ -15,6 +15,7 @@ import { ReportService } from "../../../services/report.service";
 export class RejectContractFormModalCompone implements OnInit {
   @Input() initialData?: rejectedDto = new rejectedDto();
   @Input() trackingCode: string;
+  @Input() typePage: string;
   readonly submitButtonId: string = "submit-button-employes";
   isLoading?: boolean = false;
   isLoadingSaveChange?: boolean = false;
@@ -30,32 +31,66 @@ export class RejectContractFormModalCompone implements OnInit {
     if (this.isLoading) {
       return;
     } else {
-      this._reportService
-        .rejectContract(data as any)
-        .pipe(
-          finalize(() => {
-            this.isLoadingSaveChange = false;
-            this.cancelHandler();
-          })
-        )
-        .subscribe({
-          next: (res) => {
-            if (res.isOk) {
-              this._toastService.success(res.data.message);
-            }
-          },
-          error: (err) => {
-            let msg = "";
-            if (err.error.messages) {
-              this._toastService.error(err.error.messages);
-              msg = err.error.messages.join(" ");
-            } else if (err.error.message) {
-              this._toastService.error(err.error.message);
-              msg = err.error.message.join(" ");
-            }
-          },
-        });
+      if (!this.typePage) {
+        this.rejectContract(data);
+      } else {
+        this.rejectOnlineConfirmations(data);
+      }
     }
+  }
+  rejectContract(data) {
+    this._reportService
+      .rejectContract(data as any)
+      .pipe(
+        finalize(() => {
+          this.isLoadingSaveChange = false;
+          this.cancelHandler();
+        })
+      )
+      .subscribe({
+        next: (res) => {
+          if (res.isOk) {
+            this._toastService.success(res.data.message);
+          }
+        },
+        error: (err) => {
+          let msg = "";
+          if (err.error.messages) {
+            this._toastService.error(err.error.messages);
+            msg = err.error.messages.join(" ");
+          } else if (err.error.message) {
+            this._toastService.error(err.error.message);
+            msg = err.error.message.join(" ");
+          }
+        },
+      });
+  }
+  rejectOnlineConfirmations(data) {
+    this._reportService
+      .rejectOnlineConfirmations(data as any)
+      .pipe(
+        finalize(() => {
+          this.isLoadingSaveChange = false;
+          this.cancelHandler();
+        })
+      )
+      .subscribe({
+        next: (res) => {
+          if (res.isOk) {
+            this._toastService.success(res.data.message);
+          }
+        },
+        error: (err) => {
+          let msg = "";
+          if (err.error.messages) {
+            this._toastService.error(err.error.messages);
+            msg = err.error.messages.join(" ");
+          } else if (err.error.message) {
+            this._toastService.error(err.error.message);
+            msg = err.error.message.join(" ");
+          }
+        },
+      });
   }
   cancelHandler() {
     this._activeModal.close(false);

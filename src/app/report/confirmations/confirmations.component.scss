@@ -33,7 +33,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: var(--gray);
+  color:var(--gray);;
 }
 
 .mb-0 {
@@ -263,7 +263,7 @@ table th {
 .invoice-1 .invoice-id {
   border-radius: 75px 0 0 75px;
   z-index: 0;
-  background-image: linear-gradient(to bottom, var(--red), var(--secondery));
+  background-image: linear-gradient(to bottom,var(--red),var(--secondery));
 }
 
 .invoice-1 .payment-method-list-1 {
@@ -314,7 +314,7 @@ table th {
   color: var(--red);
   margin-bottom: 5px;
 }
-.holder {
+.holder{
   flex-wrap: wrap;
 
   overflow: auto;
@@ -391,7 +391,7 @@ table th {
 }
 
 .invoice-1 .active-color {
-  color: var(--red) !important;
+  color:var(--red) !important;
 }
 
 .invoice-1 .invoice-bottom h3 {
@@ -426,7 +426,7 @@ table th {
   height: 30px;
   border-radius: 15px 0 0 15px;
   z-index: 0;
-  background-image: linear-gradient(to bottom, var(--red), #ff8100);
+  background-image: linear-gradient(to bottom,var(--red), #ff8100);
 }
 
 /** MEDIA **/
@@ -593,6 +593,7 @@ table th {
     margin: 0px;
   }
 
+
   .invoice-2 .container {
     padding: 0px;
   }
@@ -621,6 +622,7 @@ table th {
   .invoice-1 .active-color {
     color: #262525 !important;
   }
+
 }
 //table
 th {
@@ -671,33 +673,6 @@ table {
 .danger {
   animation: gloww 1.5s infinite;
 }
-
-.table-responsive {
-  width: 100%;
-  margin-bottom: 1rem;
-  overflow-y: hidden;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-}
-
-.table-responsive > .table {
-  margin-bottom: 0;
-}
-
-@media (max-width: 768px) {
-  .table-responsive > .table > thead > tr > th,
-  .table-responsive > .table > tbody > tr > th,
-  .table-responsive > .table > tfoot > tr > th,
-  .table-responsive > .table > thead > tr > td,
-  .table-responsive > .table > tbody > tr > td,
-  .table-responsive > .table > tfoot > tr > td {
-    white-space: nowrap;
-  }
-
-  .table-responsive > .table-bordered {
-    border: 0;
-  }
-}
-
 @keyframes glow {
   0% {
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.4), 0 0 10px rgba(40, 167, 69, 0.4),
