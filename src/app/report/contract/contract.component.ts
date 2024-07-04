@@ -65,38 +65,50 @@ export class ContractComponent implements OnInit {
           this.loading = false;
         })
       )
-      .subscribe((res) => {
-        if (res.isOk) {
-          this.model = res.data;
-          if (this.model.details) {
-            this.totalMeghdar = this.model.details.reduce(
-              (sum, detail) => sum + +detail.meghdar,
-              0
-            );
-            this.totalTotalAmount = this.model.details.reduce(
-              (sum, detail) => sum + detail.totalAmount,
-              0
-            );
-            this.totalDiscountAmount = this.model.details.reduce(
-              (sum, detail) => sum + detail.discountAmount,
-              0
-            );
-            this.totalValueAddedAmount = this.model.details.reduce(
-              (sum, detail) => sum + detail.valueAddedAmount,
-              0
-            );
-            this.totalnetAmountRow = this.model.details.reduce(
-              (sum, detail) => sum + detail.netAmountRow,
-              0
-            );
-            this.totalcomplicationsAmount = this.model.details.reduce(
-              (sum, detail) => sum + detail.complicationsAmount,
-              0
-            );
+      .subscribe({
+        next: (res) => {
+          if (res.isOk) {
+            this.model = res.data;
+            if (this.model.details) {
+              this.totalMeghdar = this.model.details.reduce(
+                (sum, detail) => sum + +detail.meghdar,
+                0
+              );
+              this.totalTotalAmount = this.model.details.reduce(
+                (sum, detail) => sum + detail.totalAmount,
+                0
+              );
+              this.totalDiscountAmount = this.model.details.reduce(
+                (sum, detail) => sum + detail.discountAmount,
+                0
+              );
+              this.totalValueAddedAmount = this.model.details.reduce(
+                (sum, detail) => sum + detail.valueAddedAmount,
+                0
+              );
+              this.totalnetAmountRow = this.model.details.reduce(
+                (sum, detail) => sum + detail.netAmountRow,
+                0
+              );
+              this.totalcomplicationsAmount = this.model.details.reduce(
+                (sum, detail) => sum + detail.complicationsAmount,
+                0
+              );
+            }
+          } else {
+            this.message = res.messages.join(" ");
           }
-        } else {
-          this.message = res.messages.join(" ");
-        }
+        },
+        error: (err) => {
+          let msg = "";
+          if (err.error.messages) {
+            this._toastService.error(err.error.messages);
+            msg = err.error.messages.join(" ");
+          } else if (err.error.message) {
+            this._toastService.error(err.error.message);
+            msg = err.error.message.join(" ");
+          }
+        },
       });
   }
   acceptContract() {

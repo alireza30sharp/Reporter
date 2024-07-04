@@ -2,7 +2,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { ReportComponent } from "./report.component";
 import { FactorComponent } from "./factor/factor.component";
-import { NotFoundComponent } from "../pages/miscellaneous/not-found/not-found.component";
 import { ContractComponent } from "./contract/contract.component";
 import { AdminAuthGuard } from "./services/admin-auth.guard";
 import { ConfirmationsComponent } from "./confirmations/confirmations.component";
@@ -24,10 +23,6 @@ const routes: Routes = [
       {
         path: "confirmations/:trackingCode",
         component: ConfirmationsComponent,
-      },
-      {
-        path: "**",
-        component: NotFoundComponent,
       },
     ],
   },

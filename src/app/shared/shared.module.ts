@@ -6,7 +6,6 @@ import { CommonModule } from "@angular/common";
 import { NgSelectModule } from "@ng-select/ng-select";
 
 import * as kiComponent from "./ki-components";
-import { PrimengModule } from "./primeng/primeng.module";
 import { LoadingComponent } from "./components/loading/loading.component";
 import {
   NbActionsModule,
@@ -46,7 +45,6 @@ const component = [
     ReactiveFormsModule,
     RouterModule,
     CommonModule,
-    PrimengModule,
     NbActionsModule,
     NbButtonModule,
     NbCardModule,
@@ -63,7 +61,6 @@ const component = [
   providers: [],
   exports: [
     ReactiveFormsModule,
-    PrimengModule,
     NbActionsModule,
     NbButtonModule,
     NbCardModule,
