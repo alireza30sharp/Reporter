@@ -19,6 +19,7 @@ const routes: Routes = [
       {
         path: "contract/:trackingCode",
         component: ContractComponent,
+        canActivate: [AdminAuthGuard],
       },
       {
         path: "confirmations/:trackingCode",
