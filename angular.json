@@ -29,12 +29,9 @@
             ],
             "styles": [
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
-              "node_modules/shepherd.js/dist/css/shepherd.css",
               "node_modules/@fortawesome/fontawesome-free/css/v4-shims.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ionicons/scss/ionicons.scss",
               "node_modules/nebular-icons/scss/nebular-icons.scss",
@@ -46,17 +43,11 @@
             "scripts": [
               "src/assets/scripts/stimulsoft.reports.engine.js",
               "src/assets/scripts/stimulsoft.reports.export.js",
-              "src/assets/scripts/stimulsoft.reports.chart.js",
-              "src/assets/scripts/stimulsoft.reports.maps.js",
-              "src/assets/scripts/stimulsoft.reports.import.xlsx.js",
-              "src/assets/scripts/stimulsoft.viewer.js",
-              "src/assets/scripts/stimulsoft.designer.js",
-              "src/assets/scripts/stimulsoft.blockly.editor.js"
+              "src/assets/scripts/stimulsoft.viewer.js"
             ],
             "allowedCommonJsDependencies": [
               "lodash",
-              "zrender/lib/svg/svg",
-              "zrender/lib/vml/vml",
+           
               "jalali-moment"
             ],
             "vendorChunk": true,
