@@ -28,7 +28,7 @@ export class OtpCodeComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params) => {
       this.eid = params["trackingCode"];
-      this.getContractByTrackingCode();
+      // this.getContractByTrackingCode();
     });
   }
   getContractByTrackingCode() {
@@ -41,7 +41,6 @@ export class OtpCodeComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        debugger;
         if (res.isOk) {
           this.expireSecound = res.data.pinCodeExpireSecond;
           this.lastFourDigitPhoneNumber = res.data.lastFourDigitPhoneNumber;

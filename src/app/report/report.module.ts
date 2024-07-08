@@ -13,6 +13,8 @@ import { separatorPipe } from "./pipe/separator";
 import { RejectContractFormComponent } from "./components/organisms";
 import { RejectContractFormModalCompone } from "./components/templates/reject-contract-form-modal/reject-contract-form-modal.component";
 import { ConfirmationsComponent } from "./confirmations/confirmations.component";
+import { Router } from "@angular/router";
+import { ContractMobileComponent } from "./contract/contract-mobile/contract-mobile.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { ConfirmationsComponent } from "./confirmations/confirmations.component"
     ReportComponent,
     FactorComponent,
     ContractComponent,
+    ContractMobileComponent,
     ConfirmationsComponent,
     RejectContractFormComponent,
     RejectContractFormModalCompone,

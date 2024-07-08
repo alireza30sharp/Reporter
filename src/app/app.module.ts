@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgModule } from "@angular/core";
+import { NgModule, isDevMode } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 // import { CoreModule } from "./@core/core.module";
 // import { ThemeModule } from "./@theme/theme.module";
@@ -20,6 +20,7 @@ import { TestComponent } from "./test/test.component";
 import { ThemeModule } from "./@theme/theme.module";
 import { CoreModule } from "./@core/core.module";
 import { NbMenuModule, NbSidebarModule, NbToastrModule } from "@nebular/theme";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
@@ -40,6 +41,12 @@ import { NbMenuModule, NbSidebarModule, NbToastrModule } from "@nebular/theme";
     // }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   bootstrap: [AppComponent],
 })

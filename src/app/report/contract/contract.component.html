@@ -2,468 +2,481 @@
   <ngx-loading></ngx-loading>
 </ng-container>
 <ng-template #tem>
-  <div class="invoice-1 invoice-content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="invoice-inner clearfix">
-            <div class="invoice-info clearfix" id="invoice_wrapper">
-              <div class="invoice-headar">
-                <div class="row g-0">
-                  <div class="col-sm-6">
-                    <div class="invoice-logo">
-                      <!-- logo started -->
-                      <div class="logo">
-                        <img
-                          src="../../../assets/images/logos/logo.png"
-                          alt="logo"
+  <ng-container *ngIf="!isMobile; else mobileTemplate">
+    <div class="invoice-1 invoice-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="invoice-inner clearfix">
+              <div class="invoice-info clearfix" id="invoice_wrapper">
+                <div class="invoice-headar">
+                  <div class="row g-0">
+                    <div class="col-sm-6">
+                      <div class="invoice-logo">
+                        <!-- logo started -->
+                        <div class="logo">
+                          <img
+                            src="../../../assets/images/logos/logo.png"
+                            alt="logo"
+                          />
+                        </div>
+                        <span
+                          class="badge bg-success success"
+                          *ngIf="model?.contractHeader.isAccepted"
+                          >تایید شده</span
+                        >
+                        <span
+                          *ngIf="model?.contractHeader.isRejected"
+                          class="badge bg-danger danger"
+                          >تاییده نشده</span
+                        >
+                        <span
+                          *ngIf="
+                            !model?.contractHeader.isRejected &&
+                            !model?.contractHeader.isAccepted
+                          "
+                          class="badge badge-warning"
+                          >در حال بررسی</span
+                        >
+                        <!-- logo ended -->
+                      </div>
+                    </div>
+                    <div class="col-sm-6 invoice-id">
+                      <div class="info">
+                        <h1 class="color-white inv-header-1">
+                          قرار داد بتن آماده
+                        </h1>
+                        <p class="color-white mb-1">
+                          {{ model?.contractHeader?.shContract }}
+                          <span>شماره قرار داد</span>
+                        </p>
+                        <p class="color-white mb-0">
+                          {{ model?.contractHeader?.contractDate }}
+                          <span>تاریخ</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="invoice-center">
+                  <div class="invoice-top mt-5 mb-3">
+                    <div class="invoice-number mb-30">
+                      <h4 class="inv-title-1 text-center">مشخصات فروشنده</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          نام شخص حقیقی/حقوقی :
+                          <span class="f-bold">{{
+                            model?.contractHeader.companyName
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          شماره همراه :
+                          <span class="f-bold">{{
+                            model?.contractHeader.customerMobile
+                          }}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="invoice-top mt-5 mb-3">
+                    <div class="invoice-number mb-30">
+                      <h4 class="inv-title-1 text-center">مشخصات خریدار</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          نام شخص حقیقی/حقوقی:
+                          <span class="f-bold">{{
+                            model?.contractHeader.customerName
+                          }}</span>
+                        </p>
+                        <p class="invo-addr-1">
+                          نشانی کامل:
+                          {{ model?.contractHeader.customerAddress }}
+                        </p>
+                      </div>
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          شماره اقتصادی:
+                          {{ model?.contractHeader.customerEconomicNumber }}
+                        </p>
+                        <p class="invo-addr-1">
+                          کد پستی:
+                          {{ model?.contractHeader.customerPostalCode }}
+                        </p>
+                      </div>
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          شماره ثبت:
+                          {{ model?.contractHeader.customerRegistrationNumber }}
+                        </p>
+                        <p class="invo-addr-1">
+                          شماره ملی:
+                          {{ model?.contractHeader.customerNationalID }}
+                        </p>
+                        <p class="invo-addr-1">
+                          شماره همراه:
+                          <span class="f-bold">{{
+                            model?.contractHeader.customerMobile
+                          }}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="scroller-table">
+                    <table
+                      class="table table-hover table-responsive table-striped"
+                    >
+                      <thead>
+                        <tr class="gray-txt border-bottom">
+                          <th class="pl0 text-start" scope="col">ردیف</th>
+                          <th class="pl0 text-start" scope="col-2">شرح کالا</th>
+                          <th class="text-center" scope="col">مقدار</th>
+                          <th class="text-center" scope="col">مبلغ واحد</th>
+                          <th class="text-center" scope="col">مبلغ کل</th>
+                          <th class="text-center" scope="col">درصد تخفیف</th>
+                          <th class="text-center" scope="col">مبلغ تخفیف</th>
+                          <th class="text-center" scope="col">درصد عوارض</th>
+                          <th class="text-center" scope="col">مبلغ عوارض</th>
+                          <th class="text-center" scope="col">
+                            درصد ارزش افزوده
+                          </th>
+                          <th class="text-center" scope="col">
+                            مبلغ ارزش افزوده
+                          </th>
+                          <th class="text-center" scope="col">مبلغ خالص</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          class="fw-bold"
+                          *ngFor="let item of model?.details; let index = index"
+                        >
+                          <th scope="row">
+                            <div class="item-desc-1">
+                              <span>{{ index + 1 }}</span>
+                            </div>
+                          </th>
+                          <td class="pl0">{{ item.productName }}</td>
+                          <td class="text-center">
+                            {{ item.meghdar | separator }}
+                          </td>
+                          <td class="text-center">
+                            {{ item.unitAmount | separator }}
+                          </td>
+                          <td class="text-end">
+                            {{ item.totalAmount | separator }}
+                          </td>
+                          <td class="text-end">{{ item.discountPercent }} %</td>
+                          <td class="text-end">
+                            {{ item.discountAmount | separator }}
+                          </td>
+                          <td class="text-end">
+                            {{ item.valueAddedPercentage }} %
+                          </td>
+                          <td class="text-end">
+                            {{ item.valueAddedAmount | separator }}
+                          </td>
+                          <td class="text-end">
+                            {{ item.complicationsPercentage }} %
+                          </td>
+                          <td class="text-end">
+                            {{ item.complicationsAmount | separator }}
+                          </td>
+                          <td class="text-end">
+                            {{ item.netAmountRow | separator }}
+                          </td>
+                        </tr>
+
+                        <tr class="tr2">
+                          <td colspan="2" class="f-w-600 active-color">
+                            جمع کل
+                          </td>
+                          <td>{{ totalMeghdar | separator }}</td>
+                          <td></td>
+                          <td>{{ totalTotalAmount | separator }}</td>
+                          <td></td>
+                          <td>{{ totalDiscountAmount | separator }}</td>
+                          <td></td>
+                          <td>{{ totalValueAddedAmount | separator }}</td>
+                          <td></td>
+                          <td>{{ totalComplicationsAmount | separator }}</td>
+                          <td>{{ totalNetAmountRow | separator }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- حمل -->
+                  <div class="invoice-top mt-5 mb-3">
+                    <div class="invoice-number mb-30">
+                      <h4 class="inv-title-1 text-center">اطلاعات حمل</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          نوع محاسبه حمل :
+                          <span class="f-bold">{{
+                            model?.contractConcreteSupplementary
+                              .pumpCalculationType
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          مبلغ واحد حمل :
+                          <span class="f-bold">{{
+                            model?.contractConcreteSupplementary
+                              .carryingUnitAmount | separator
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          محاسبه کسری تا:
+                          <span class="f-bold">{{
+                            model?.contractConcreteSupplementary
+                              .calculateTheCarryingAmountTo
+                          }}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- پمپ -->
+                  <div class="invoice-top mt-5 mb-3">
+                    <div class="invoice-number mb-30">
+                      <h4 class="inv-title-1 text-center">اطلاعات پمپ</h4>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          نوع پمپ :
+                          <span class="f-bold">{{
+                            model?.contractConcreteSupplementary.pumpType
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          نوع محاسبه پمپ :
+                          <span class="f-bold">{{
+                            model?.contractConcreteSupplementary
+                              .pumpCalculationType
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-md-4 box-item">
+                        <p class="invo-addr-1">
+                          مبلغ واحد پمپ :
+                          <span class="f-bold">{{
+                            model?.contractConcreteSupplementary.pumpUnitAmount
+                              | separator
+                          }}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-----------------------------رده مقاومتی-->
+
+                  <div class="invoice-top mt-5 mb-3">
+                    <div class="d-flex justify-content-start w-100 pr-3">
+                      <div class="row g-3">
+                        <div
+                          class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
+                        >
+                          <p class="invo-addr-1">
+                            رده مقاومتی :
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .resistanceCategory
+                              }}
+                            </span>
+                          </p>
+                        </div>
+
+                        <div
+                          class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
+                        >
+                          <p class="invo-addr-1">
+                            مقدار سیمان :
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .theAmountOfCement
+                              }}
+                            </span>
+                          </p>
+                        </div>
+
+                        <div
+                          class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
+                        >
+                          <p class="invo-addr-1">
+                            مقدار آب:
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .waterToCementRatio
+                              }}
+                            </span>
+                          </p>
+                        </div>
+
+                        <div
+                          class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
+                        >
+                          <p class="invo-addr-1">
+                            حداقل مقاومت :
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .minimumResistance
+                              }}
+                            </span>
+                          </p>
+                        </div>
+
+                        <div
+                          class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
+                        >
+                          <p class="invo-addr-1">
+                            نوع سیمان :
+                            <span class="f-bold">
+                              {{
+                                model?.contractConcreteSupplementary
+                                  .typeOfCement
+                              }}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-----------------------آدرس پروژه   اتمام-->
+
+                  <div class="container mb-30 dear-client">
+                    <div class="row">
+                      <div class="col-12">
+                        <h3 class="inv-title-1">آدرس پروژه</h3>
+                        <p>
+                          {{
+                            model?.contractConcreteSupplementary.projectAddress
+                          }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-----------شرایط و ضوابط-->
+                  <div class="container mb-30 dear-client">
+                    <div class="row">
+                      <div class="col-12">
+                        <h3 class="inv-title-1">شرایط و ضوابط</h3>
+                        <div
+                          [innerHTML]="
+                            model?.contractHeader.contractText1 | paragraph
+                          "
+                        ></div>
+                        <div
+                          [innerHTML]="
+                            model?.contractHeader.contractText2 | paragraph
+                          "
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="invoice-bottom mt-5 mb-3">
+                    <div class="row">
+                      <div class="col-lg-4 col-sm-12 box-item">
+                        <p class="invo-addr-1">
+                          جمع کل مقدار :
+                          <span class="f-bold">{{
+                            totalMeghdar | separator
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-lg-4 col-sm-12 box-item">
+                        <p class="invo-addr-1">
+                          مبلغ کل :
+                          <span class="f-bold">{{
+                            totalTotalAmount | separator
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-lg-4 col-sm-12 box-item">
+                        <p class="invo-addr-1">
+                          مبلغ کل تخفیف :
+                          <span class="f-bold">{{
+                            totalDiscountAmount | separator
+                          }}</span>
+                        </p>
+                      </div>
+                      <div class="col-lg-4 col-sm-12 box-item">
+                        <p class="invo-addr-1">
+                          مبلغ کل عوارض:
+                          <span class="f-bold">{{
+                            totalValueAddedAmount | separator
+                          }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [value]="true"
+                          [(ngModel)]="isAccepted"
+                          id="flexCheckDefault"
                         />
+                        <label
+                          class="form-check-label mr-4"
+                          for="flexCheckDefault"
+                        >
+                          تمام موارد را خواندم و موافق هستم
+                        </label>
                       </div>
-                      <span
-                        class="badge bg-success success"
-                        *ngIf="model?.contractHeader.isAccepted"
-                        >تایید شده</span
-                      >
-                      <span
-                        *ngIf="model?.contractHeader.isRejected"
-                        class="badge bg-danger danger"
-                        >تاییده نشده</span
-                      >
-                      <span
-                        *ngIf="
-                          !model?.contractHeader.isRejected &&
-                          !model?.contractHeader.isAccepted
-                        "
-                        class="badge badge-warning"
-                        >در حال بررسی</span
-                      >
-                      <!-- logo ended -->
-                    </div>
-                  </div>
-                  <div class="col-sm-6 invoice-id">
-                    <div class="info">
-                      <h1 class="color-white inv-header-1">
-                        قرار داد بتن آماده
-                      </h1>
-                      <p class="color-white mb-1">
-                        {{ model?.contractHeader?.shContract }}
-                        <span>شماره قرار داد</span>
-                      </p>
-                      <p class="color-white mb-0">
-                        {{ model?.contractHeader?.contractDate }}
-                        <span>تاریخ</span>
-                      </p>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="invoice-center">
-                <div class="invoice-top mt-5 mb-3">
-                  <div class="invoice-number mb-30">
-                    <h4 class="inv-title-1 text-center">مشخصات فروشنده</h4>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        نام شخص حقیقی/حقوقی :
-                        <span class="f-bold">{{
-                          model?.contractHeader.companyName
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        شماره همراه :
-                        <span class="f-bold">{{
-                          model?.contractHeader.customerMobile
-                        }}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="invoice-top mt-5 mb-3">
-                  <div class="invoice-number mb-30">
-                    <h4 class="inv-title-1 text-center">مشخصات خریدار</h4>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        نام شخص حقیقی/حقوقی:
-                        <span class="f-bold">{{
-                          model?.contractHeader.customerName
-                        }}</span>
-                      </p>
-                      <p class="invo-addr-1">
-                        نشانی کامل: {{ model?.contractHeader.customerAddress }}
-                      </p>
-                    </div>
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        شماره اقتصادی:
-                        {{ model?.contractHeader.customerEconomicNumber }}
-                      </p>
-                      <p class="invo-addr-1">
-                        کد پستی: {{ model?.contractHeader.customerPostalCode }}
-                      </p>
-                    </div>
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        شماره ثبت:
-                        {{ model?.contractHeader.customerRegistrationNumber }}
-                      </p>
-                      <p class="invo-addr-1">
-                        شماره ملی:
-                        {{ model?.contractHeader.customerNationalID }}
-                      </p>
-                      <p class="invo-addr-1">
-                        شماره همراه:
-                        <span class="f-bold">{{
-                          model?.contractHeader.customerMobile
-                        }}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="scroller-table">
-                  <table
-                    class="table table-hover table-responsive table-striped"
-                  >
-                    <thead>
-                      <tr class="gray-txt border-bottom">
-                        <th class="pl0 text-start" scope="col">ردیف</th>
-                        <th class="pl0 text-start" scope="col-2">شرح کالا</th>
-                        <th class="text-center" scope="col">مقدار</th>
-                        <th class="text-center" scope="col">مبلغ واحد</th>
-                        <th class="text-center" scope="col">مبلغ کل</th>
-                        <th class="text-center" scope="col">درصد تخفیف</th>
-                        <th class="text-center" scope="col">مبلغ تخفیف</th>
-                        <th class="text-center" scope="col">درصد عوارض</th>
-                        <th class="text-center" scope="col">مبلغ عوارض</th>
-                        <th class="text-center" scope="col">
-                          درصد ارزش افزوده
-                        </th>
-                        <th class="text-center" scope="col">
-                          مبلغ ارزش افزوده
-                        </th>
-                        <th class="text-center" scope="col">مبلغ خالص</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        class="fw-bold"
-                        *ngFor="let item of model?.details; let index = index"
-                      >
-                        <th scope="row">
-                          <div class="item-desc-1">
-                            <span>{{ index + 1 }}</span>
-                          </div>
-                        </th>
-                        <td class="pl0">{{ item.productName }}</td>
-                        <td class="text-center">
-                          {{ item.meghdar | separator }}
-                        </td>
-                        <td class="text-center">
-                          {{ item.unitAmount | separator }}
-                        </td>
-                        <td class="text-end">
-                          {{ item.totalAmount | separator }}
-                        </td>
-                        <td class="text-end">{{ item.discountPercent }} %</td>
-                        <td class="text-end">
-                          {{ item.discountAmount | separator }}
-                        </td>
-                        <td class="text-end">
-                          {{ item.valueAddedPercentage }} %
-                        </td>
-                        <td class="text-end">
-                          {{ item.valueAddedAmount | separator }}
-                        </td>
-                        <td class="text-end">
-                          {{ item.complicationsPercentage }} %
-                        </td>
-                        <td class="text-end">
-                          {{ item.complicationsAmount | separator }}
-                        </td>
-                        <td class="text-end">
-                          {{ item.netAmountRow | separator }}
-                        </td>
-                      </tr>
-
-                      <tr class="tr2">
-                        <td colspan="2" class="f-w-600 active-color">جمع کل</td>
-                        <td>{{ totalMeghdar | separator }}</td>
-                        <td></td>
-                        <td>{{ totalTotalAmount | separator }}</td>
-                        <td></td>
-                        <td>{{ totalDiscountAmount | separator }}</td>
-                        <td></td>
-                        <td>{{ totalValueAddedAmount | separator }}</td>
-                        <td></td>
-                        <td>{{ totalComplicationsAmount | separator }}</td>
-                        <td>{{ totalNetAmountRow | separator }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <!-- حمل -->
-                <div class="invoice-top mt-5 mb-3">
-                  <div class="invoice-number mb-30">
-                    <h4 class="inv-title-1 text-center">اطلاعات حمل</h4>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        نوع محاسبه حمل :
-                        <span class="f-bold">{{
-                          model?.contractConcreteSupplementary
-                            .pumpCalculationType
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        مبلغ واحد حمل :
-                        <span class="f-bold">{{
-                          model?.contractConcreteSupplementary
-                            .carryingUnitAmount | separator
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        محاسبه کسری تا:
-                        <span class="f-bold">{{
-                          model?.contractConcreteSupplementary
-                            .calculateTheCarryingAmountTo
-                        }}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-- پمپ -->
-                <div class="invoice-top mt-5 mb-3">
-                  <div class="invoice-number mb-30">
-                    <h4 class="inv-title-1 text-center">اطلاعات پمپ</h4>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        نوع پمپ :
-                        <span class="f-bold">{{
-                          model?.contractConcreteSupplementary.pumpType
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        نوع محاسبه پمپ :
-                        <span class="f-bold">{{
-                          model?.contractConcreteSupplementary
-                            .pumpCalculationType
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-md-4 box-item">
-                      <p class="invo-addr-1">
-                        مبلغ واحد پمپ :
-                        <span class="f-bold">{{
-                          model?.contractConcreteSupplementary.pumpUnitAmount
-                            | separator
-                        }}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-----------------------------رده مقاومتی-->
-
-                <div class="invoice-top mt-5 mb-3">
-                  <div class="d-flex justify-content-start w-100 pr-3">
-                    <div class="row g-3">
-                      <div
-                        class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
-                      >
-                        <p class="invo-addr-1">
-                          رده مقاومتی :
-                          <span class="f-bold">
-                            {{
-                              model?.contractConcreteSupplementary
-                                .resistanceCategory
-                            }}
-                          </span>
-                        </p>
-                      </div>
-
-                      <div
-                        class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
-                      >
-                        <p class="invo-addr-1">
-                          مقدار سیمان :
-                          <span class="f-bold">
-                            {{
-                              model?.contractConcreteSupplementary
-                                .theAmountOfCement
-                            }}
-                          </span>
-                        </p>
-                      </div>
-
-                      <div
-                        class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
-                      >
-                        <p class="invo-addr-1">
-                          مقدار آب:
-                          <span class="f-bold">
-                            {{
-                              model?.contractConcreteSupplementary
-                                .waterToCementRatio
-                            }}
-                          </span>
-                        </p>
-                      </div>
-
-                      <div
-                        class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
-                      >
-                        <p class="invo-addr-1">
-                          حداقل مقاومت :
-                          <span class="f-bold">
-                            {{
-                              model?.contractConcreteSupplementary
-                                .minimumResistance
-                            }}
-                          </span>
-                        </p>
-                      </div>
-
-                      <div
-                        class="col-sm-6 col-md-4 col-lg-2 d-flex flex-column box-item"
-                      >
-                        <p class="invo-addr-1">
-                          نوع سیمان :
-                          <span class="f-bold">
-                            {{
-                              model?.contractConcreteSupplementary.typeOfCement
-                            }}
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-----------------------آدرس پروژه   اتمام-->
-
-                <div class="container mb-30 dear-client">
-                  <div class="row">
-                    <div class="col-12">
-                      <h3 class="inv-title-1">آدرس پروژه</h3>
-                      <p>
-                        {{
-                          model?.contractConcreteSupplementary.projectAddress
-                        }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <!-----------شرایط و ضوابط-->
-                <div class="container mb-30 dear-client">
-                  <div class="row">
-                    <div class="col-12">
-                      <h3 class="inv-title-1">شرایط و ضوابط</h3>
-                      <div
-                        [innerHTML]="
-                          model?.contractHeader.contractText1 | paragraph
-                        "
-                      ></div>
-                      <div
-                        [innerHTML]="
-                          model?.contractHeader.contractText2 | paragraph
-                        "
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="invoice-bottom mt-5 mb-3">
-                  <div class="row">
-                    <div class="col-lg-4 col-sm-12 box-item">
-                      <p class="invo-addr-1">
-                        جمع کل مقدار :
-                        <span class="f-bold">{{
-                          totalMeghdar | separator
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-lg-4 col-sm-12 box-item">
-                      <p class="invo-addr-1">
-                        مبلغ کل :
-                        <span class="f-bold">{{
-                          totalTotalAmount | separator
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-lg-4 col-sm-12 box-item">
-                      <p class="invo-addr-1">
-                        مبلغ کل تخفیف :
-                        <span class="f-bold">{{
-                          totalDiscountAmount | separator
-                        }}</span>
-                      </p>
-                    </div>
-                    <div class="col-lg-4 col-sm-12 box-item">
-                      <p class="invo-addr-1">
-                        مبلغ کل عوارض:
-                        <span class="f-bold">{{
-                          totalValueAddedAmount | separator
-                        }}</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        [value]="true"
-                        [(ngModel)]="isAccepted"
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        class="form-check-label mr-4"
-                        for="flexCheckDefault"
-                      >
-                        تمام موارد را خواندم و موافق هستم
-                      </label>
-                    </div>
-                  </div>
-                </div>
+              <div class="invoice-btn-section clearfix d-print-none">
+                <a
+                  href="javascript:window.print()"
+                  class="btn btn-lg btn-print"
+                >
+                  <i class="fa fa-print"></i>چاپ
+                </a>
+                <button
+                  [disabled]="!isAccepted"
+                  id="invoice_download_btn"
+                  class="btn btn-lg btn-success"
+                  (click)="acceptContract()"
+                >
+                  <i class="fa-solid fa-square-check"></i>تایید
+                </button>
+                <button
+                  id="invoice_download_btn"
+                  class="btn btn-lg btn-danger btn-theme"
+                  (click)="rejectContract()"
+                >
+                  <i class="fa-solid fa-thumbs-down"></i>عدم تایید
+                </button>
               </div>
-            </div>
-            <div class="invoice-btn-section clearfix d-print-none">
-              <a href="javascript:window.print()" class="btn btn-lg btn-print">
-                <i class="fa fa-print"></i>چاپ
-              </a>
-              <button
-                [disabled]="!isAccepted"
-                id="invoice_download_btn"
-                class="btn btn-lg btn-success"
-                (click)="acceptContract()"
-              >
-                <i class="fa-solid fa-square-check"></i>تایید
-              </button>
-              <button
-                id="invoice_download_btn"
-                class="btn btn-lg btn-danger btn-theme"
-                (click)="rejectContract()"
-              >
-                <i class="fa-solid fa-thumbs-down"></i>عدم تایید
-              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #mobileTemplate>
+    <ngx-contract-mobile></ngx-contract-mobile>
+  </ng-template>
 </ng-template>

@@ -37,11 +37,11 @@ export class ContractComponent implements OnInit {
   //   { paramName: "NameCompony", paramValue: "صورت حساب اشکان جان" },
   // ];
   constructor(
-    private _reportService: ReportService,
-    private _activatedRoute: ActivatedRoute,
-    private _toastService: ToastService,
-    private _modalService: ModalService,
-    readonly authSvc: UserAuthService
+    public _reportService: ReportService,
+    public _activatedRoute: ActivatedRoute,
+    public _toastService: ToastService,
+    public _modalService: ModalService,
+    public authSvc: UserAuthService
   ) {
     if ((window as any).isMobile) {
       this.isMobile = true;
