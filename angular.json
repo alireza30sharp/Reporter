@@ -43,7 +43,9 @@
               "includePaths": ["src/assets/base"]
             },
             "scripts": [
-     
+              "src/assets/scripts/stimulsoft.reports.engine.js",
+              "src/assets/scripts/stimulsoft.reports.export.js",
+              "src/assets/scripts/stimulsoft.viewer.js"
             ],
             "allowedCommonJsDependencies": [
               "lodash",
