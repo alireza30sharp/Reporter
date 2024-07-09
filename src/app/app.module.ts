@@ -1,4 +1,4 @@
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule,HammerModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, isDevMode } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
@@ -6,6 +6,8 @@ import { HttpClientModule } from "@angular/common/http";
 // import { ThemeModule } from "./@theme/theme.module";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
+
+
 // import {
 //   NbChatModule,
 //   NbDatepickerModule,
@@ -21,16 +23,20 @@ import { ThemeModule } from "./@theme/theme.module";
 import { CoreModule } from "./@core/core.module";
 import { NbMenuModule, NbSidebarModule, NbToastrModule } from "@nebular/theme";
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 @NgModule({
   declarations: [AppComponent, TestComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+
+    HammerModule,
     HttpClientModule,
     AppRoutingModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    IonicModule.forRoot(),
     // NbDatepickerModule.forRoot(),
     // NbDialogModule.forRoot(),
     // NbWindowModule.forRoot(),

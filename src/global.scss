@@ -1,0 +1,121 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 900;
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Black.eot');
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Black.eot?#iefix') format('embedded-opentype'),
+      /* IE6-8 */
+      url('assets/fonts/woff2/IRANSansWeb(FaNum)_Black.woff2') format('woff2'),
+      /* FF39+,Chrome36+, Opera24+*/
+      url('assets/fonts/woff/IRANSansWeb(FaNum)_Black.woff') format('woff'),
+      /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url('assets/fonts/ttf/IRANSansWeb(FaNum)_Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: bold;
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Bold.eot');
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix') format('embedded-opentype'),
+      /* IE6-8 */
+      url('assets/fonts/woff2/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'),
+      /* FF39+,Chrome36+, Opera24+*/
+      url('assets/fonts/woff/IRANSansWeb(FaNum)_Bold.woff') format('woff'),
+      /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url('assets/fonts/ttf/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 500;
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Medium.eot');
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Medium.eot?#iefix') format('embedded-opentype'),
+      /* IE6-8 */
+      url('assets/fonts/woff2/IRANSansWeb(FaNum)_Medium.woff2') format('woff2'),
+      /* FF39+,Chrome36+, Opera24+*/
+      url('assets/fonts/woff/IRANSansWeb(FaNum)_Medium.woff') format('woff'),
+      /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url('assets/fonts/ttf/IRANSansWeb(FaNum)_Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 300;
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Light.eot');
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_Light.eot?#iefix') format('embedded-opentype'),
+      /* IE6-8 */
+      url('assets/fonts/woff2/IRANSansWeb(FaNum)_Light.woff2') format('woff2'),
+      /* FF39+,Chrome36+, Opera24+*/
+      url('assets/fonts/woff/IRANSansWeb(FaNum)_Light.woff') format('woff'),
+      /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url('assets/fonts/ttf/IRANSansWeb(FaNum)_Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 200;
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_UltraLight.eot');
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum)_UltraLight.eot?#iefix') format('embedded-opentype'),
+      /* IE6-8 */
+      url('assets/fonts/woff2/IRANSansWeb(FaNum)_UltraLight.woff2') format('woff2'),
+      /* FF39+,Chrome36+, Opera24+*/
+      url('assets/fonts/woff/IRANSansWeb(FaNum)_UltraLight.woff') format('woff'),
+      /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url('assets/fonts/ttf/IRANSansWeb(FaNum)_UltraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: normal;
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum).eot');
+  src: url('assets/fonts/eot/IRANSansWeb(FaNum).eot?#iefix') format('embedded-opentype'),
+      /* IE6-8 */
+      url('assets/fonts/woff2/IRANSansWeb(FaNum).woff2') format('woff2'),
+      /* FF39+,Chrome36+, Opera24+*/
+      url('assets/fonts/woff/IRANSansWeb(FaNum).woff') format('woff'),
+      /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+      url('assets/fonts/ttf/IRANSansWeb(FaNum).ttf') format('truetype');
+}
+
+*:not(.fa) {
+  font-family: IRANSans !important;
+}
+
+.w-100{
+  width: 100%;
+}
+
+.highlight{
+  color: yellow;;
+}
