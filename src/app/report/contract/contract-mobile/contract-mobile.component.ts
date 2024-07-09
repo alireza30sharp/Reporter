@@ -16,10 +16,7 @@ import { ContractComponent } from "../contract.component";
   templateUrl: "./contract-mobile.component.html",
   styleUrls: ["./contract-mobile.component.scss"],
 })
-export class ContractMobileComponent
-  extends ContractComponent
-  implements OnInit
-{
+export class ContractMobileComponent extends ContractComponent {
   constructor(
     public override _reportService: ReportService,
     public override _activatedRoute: ActivatedRoute,
@@ -35,5 +32,4 @@ export class ContractMobileComponent
       authSvc
     );
   }
-  ngOnInit(): void {}
 }

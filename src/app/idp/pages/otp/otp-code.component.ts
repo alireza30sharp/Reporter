@@ -28,7 +28,7 @@ export class OtpCodeComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.params.subscribe((params) => {
       this.eid = params["trackingCode"];
-      // this.getContractByTrackingCode();
+      this.getContractByTrackingCode();
     });
   }
   getContractByTrackingCode() {

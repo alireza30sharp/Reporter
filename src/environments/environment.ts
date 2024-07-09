@@ -10,5 +10,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://matin.api.kiasystem.ir",
+  apiUrl: "http://matin.api.kiasystem.ir",
 };

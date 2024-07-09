@@ -24,7 +24,11 @@ export class ContractComponent implements OnInit {
   dataSetName: any = "Data";
   message: string = "";
   loading: boolean = false;
-  model: ContractInterface;
+  public model: ContractInterface = {
+    contractConcreteSupplementary: null,
+    contractHeader: null,
+    details: [],
+  };
   tracking = new trackingCode();
   isAccepted: boolean = false;
   totalMeghdar = 0;
@@ -50,7 +54,97 @@ export class ContractComponent implements OnInit {
       this.getContractByTrackingCode(res);
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // debugger;
+    // this.model = Object.assign(
+    //   {},
+    //   {
+    //     contractHeader: {
+    //       id: 1,
+    //       shContract: 5,
+    //       trackingCode: "cc9fde59-3d43-46f3-84e2-7017db7130fb",
+    //       contractDate: "1403/03/14",
+    //       contractTime: "19:50:39",
+    //       companyName: "بتن ستوده",
+    //       customerCode: "3500",
+    //       customerName: "مشتری",
+    //       customerMobile: "09910311388",
+    //       totalAmount: 16340000,
+    //       additionsAndDeduction: 0,
+    //       valueAddedAmount: 0,
+    //       tollAmount: 0,
+    //       netAmount: 16340000,
+    //       howToSettle: "",
+    //       contractText1: " ",
+    //       contractText2: "",
+    //       isAccepted: false,
+    //       lastDateTimeAccept: "",
+    //       isRejected: true,
+    //       lastDateTimeReject: "",
+    //       additionalInformation1: "",
+    //       additionalInformation2: "",
+    //       additionalInformation3: "",
+    //       additionalInformation4: "",
+    //       additionalInformation5: "",
+    //     },
+    //     details: [
+    //       {
+    //         id: 27,
+    //         headerId: 1,
+    //         productCode: 1,
+    //         productName: "ماسه",
+    //         meghdar: "2",
+    //         unitAmount: 250000,
+    //         totalAmount: 500000,
+    //         discountPercent: 0,
+    //         discountAmount: 0,
+    //         valueAddedPercentage: 0,
+    //         valueAddedAmount: 0,
+    //         complicationsPercentage: 0,
+    //         complicationsAmount: 0,
+    //         netAmountRow: 500000,
+    //       },
+    //       {
+    //         id: 28,
+    //         headerId: 1,
+    //         productCode: 2,
+    //         productName: "نخودی",
+    //         meghdar: "33",
+    //         unitAmount: 480000,
+    //         totalAmount: 15840000,
+    //         discountPercent: 0,
+    //         discountAmount: 0,
+    //         valueAddedPercentage: 0,
+    //         valueAddedAmount: 0,
+    //         complicationsPercentage: 0,
+    //         complicationsAmount: 0,
+    //         netAmountRow: 15840000,
+    //       },
+    //     ],
+    //     contractConcreteSupplementary: {
+    //       id: 14,
+    //       carryingCalculationType: "واحد فروش",
+    //       carryingUnitAmount: 0,
+    //       calculateTheCarryingAmountTo: 0,
+    //       unitAmountOfCarryingDeficit: 0,
+    //       amountOfCarryingTip: 0,
+    //       pumpType: "ثابت",
+    //       pumpCalculationType: "واحد فروش",
+    //       pumpUnitAmount: 0,
+    //       unitAmountOfPumpDeficit: 0,
+    //       pumpDeficitAmountTo: 0,
+    //       pumpTipUnitAmount: 0,
+    //       resistanceCategory: "0",
+    //       theAmountOfCement: "0",
+    //       waterToCementRatio: "0",
+    //       minimumResistance: "0",
+    //       typeOfCement: "",
+    //       projectAddress: " ",
+    //       headerId: 1,
+    //     },
+    //   }
+    // );
+  }
 
   getContractByTrackingCode(tracking: trackingCode) {
     this.loading = true;
@@ -68,6 +162,7 @@ export class ContractComponent implements OnInit {
       .subscribe({
         next: (res) => {
           if (res.isOk) {
+            debugger;
             this.model = res.data;
             if (this.model.details) {
               this.totalMeghdar = this.model.details.reduce(

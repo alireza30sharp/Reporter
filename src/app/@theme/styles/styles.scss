@@ -1,5 +1,4 @@
 // Font-Size Css Angular Dynamic:
-
 @for $i from 10 through 60 {
   .f-#{$i} {
     font-size: #{$i}#{px} !important;
@@ -94,6 +93,9 @@ body {
   background-color: #f8f8f8 !important;
   overflow: hidden;
   direction: rtl;
+}
+.font-primary {
+  font-family: iranYekanNumber !important;
 }
 ag-grid-angular {
   height: 70vh;

@@ -26,7 +26,7 @@ export interface ContractConcreteSupplementary {
   headerId: number;
 }
 
-export interface Detail {
+export class Detail {
   id: number;
   headerId: number;
   productCode: number;

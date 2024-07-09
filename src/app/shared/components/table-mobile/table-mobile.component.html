@@ -1,0 +1,182 @@
+<div class="example-header font-primary" fxLayout="row">
+  <mat-form-field>
+    <input
+      matInput
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="جستجو"
+    />
+  </mat-form-field>
+</div>
+
+<div class="example-container font-primary mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort class="font-primary">
+    <!--  Column -->
+    <ng-container matColumnDef="productName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        شرح کالا
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        data-label="شرح کالا"
+        class="font-primary"
+      >
+        {{ row.productName }}
+      </mat-cell>
+      <mat-footer-cell class="font-primary" *matFooterCellDef
+        >جمع کل</mat-footer-cell
+      >
+    </ng-container>
+
+    <!-- meghdar Column -->
+    <ng-container matColumnDef="meghdar">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        مقدار
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="font-primary" data-label="مقدار">
+        {{ row.meghdar | separator }}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef class="font-primary">{{
+        totalMeghdar
+      }}</mat-footer-cell>
+    </ng-container>
+
+    <!-- unitAmount Column -->
+    <ng-container matColumnDef="unitAmount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        مبلغ واحد
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="مبلغ واحد"
+      >
+        {{ row.unitAmount }}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+    <!-- totalAmount Column -->
+    <ng-container matColumnDef="totalAmount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        مبلغ کل
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" class="font-primary" data-label="مبلغ کل">
+        {{ row.totalAmount }}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef class="font-primary">{{
+        totalTotalAmount | separator
+      }}</mat-footer-cell>
+    </ng-container>
+    <!-- discountPercent Column -->
+    <ng-container matColumnDef="discountPercent">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        درصد تخفیف
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="درصد تخفیف"
+      >
+        {{ row.discountPercent }}%
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+    <!-- discountAmount Column -->
+    <ng-container matColumnDef="discountAmount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        مبلغ تخفیف
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="مبلغ تخفیف"
+      >
+        {{ row.discountAmount }}
+      </mat-cell>
+      <mat-footer-cell class="font-primary" *matFooterCellDef>{{
+        totalDiscountAmount | separator
+      }}</mat-footer-cell>
+    </ng-container>
+    <!-- valueAddedPercentage Column -->
+    <ng-container matColumnDef="valueAddedPercentage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        درصد عوارض
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="درصد عوارض"
+      >
+        {{ row.valueAddedPercentage }}%
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+    <!-- valueAddedAmount Column -->
+    <ng-container matColumnDef="valueAddedAmount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        مبلغ عوارض
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="مبلغ عوارض"
+      >
+        {{ row.valueAddedAmount }}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef class="font-primary">{{
+        totalValueAddedAmount | separator
+      }}</mat-footer-cell>
+    </ng-container>
+    <!-- complicationsPercentage Column -->
+    <ng-container matColumnDef="complicationsPercentage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        درصد ارزش افزوده
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="درصد ارزش افزوده"
+      >
+        {{ row.complicationsPercentage }}%
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+    <!-- complicationsAmount Column -->
+    <ng-container matColumnDef="complicationsAmount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        مبلغ ارزش افزوده
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="مبلغ ارزش افزوده"
+      >
+        {{ row.complicationsAmount }}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef class="font-primary">{{
+        totalComplicationsAmount | separator
+      }}</mat-footer-cell>
+    </ng-container>
+    <!-- netAmountRow Column -->
+    <ng-container matColumnDef="netAmountRow">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        مبلغ خالص
+      </mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        class="font-primary"
+        data-label="مبلغ خالص"
+      >
+        {{ row.netAmountRow }}
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef class="font-primary">{{
+        totalnetAmountRow | separator
+      }}</mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+
+    <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

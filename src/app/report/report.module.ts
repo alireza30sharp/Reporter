@@ -8,8 +8,7 @@ import { SharedModule } from "../shared/shared.module";
 import { ContractComponent } from "./contract/contract.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { ParagraphPipe } from "./pipe/paragraph";
-import { separatorPipe } from "./pipe/separator";
+
 import { RejectContractFormComponent } from "./components/organisms";
 import { RejectContractFormModalCompone } from "./components/templates/reject-contract-form-modal/reject-contract-form-modal.component";
 import { ConfirmationsComponent } from "./confirmations/confirmations.component";
@@ -32,8 +31,6 @@ import { ContractMobileComponent } from "./contract/contract-mobile/contract-mob
     ConfirmationsComponent,
     RejectContractFormComponent,
     RejectContractFormModalCompone,
-    ParagraphPipe,
-    separatorPipe,
   ],
 })
 export class ReportModule {}
