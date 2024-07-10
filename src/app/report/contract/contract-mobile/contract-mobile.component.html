@@ -8,7 +8,11 @@
           color="light"
           routerLink="/app/seassons"
         >
-          <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            name="arrow-back"
+            color="primary"
+          ></ion-icon>
         </ion-button>
       </ion-buttons>
       <ion-title>قرار داد بتن آماده</ion-title>
@@ -37,7 +41,13 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  <ion-content  class="ion-padding" [appParallax]="img" scrollEvents="true" [appHideHeader]="hideheader" (ionScroll)="onScroll($event)">
+  <ion-content
+    class="ion-padding"
+    [appParallax]="img"
+    scrollEvents="true"
+    [appHideHeader]="hideheader"
+    (ionScroll)="onScroll($event)"
+  >
     <div class="relative">
       <img id="img" #img src="/assets/images/logos/logo.png" />
       <div class="content">
@@ -87,7 +97,8 @@
         >
         <span
           *ngIf="
-            !model?.contractHeader.isRejected && !model?.contractHeader.isAccepted
+            !model?.contractHeader.isRejected &&
+            !model?.contractHeader.isAccepted
           "
           class="badge badge-warning"
           >در حال بررسی</span
@@ -97,7 +108,7 @@
     <div class="dark-bg ion-padding-start">
       <ion-label class="f-16">قرار داد بتن آماده</ion-label>
     </div>
-  
+
     <div>
       <!---------------فروشنده-->
       <ion-card class="ion-padding ion-text-right">
@@ -129,7 +140,9 @@
         <ion-card-content class="ion-margin-top">
           <p class="invo-addr-1 color-white">
             نام شخص حقیقی/حقوقی :
-            <span class="f-bold"> {{ model?.contractHeader.customerName }}</span>
+            <span class="f-bold">
+              {{ model?.contractHeader.customerName }}</span
+            >
           </p>
           <p class="invo-addr-1 color-white">
             نشانی کامل:
@@ -170,7 +183,7 @@
         </ion-card-content>
       </ion-card>
     </div>
-  
+
     <div class="p-2">
       <ngx-table-mobile [data]="model?.details"></ngx-table-mobile>
     </div>
@@ -186,7 +199,9 @@
           <p class="invo-addr-1 color-white">
             نوع محاسبه حمل :
             <span class="f-bold">
-              {{ model?.contractConcreteSupplementary.pumpCalculationType }}</span
+              {{
+                model?.contractConcreteSupplementary.pumpCalculationType
+              }}</span
             >
           </p>
           <p class="invo-addr-1 color-white">
@@ -202,7 +217,8 @@
             محاسبه کسری تا:
             <span class="f-bold">
               {{
-                model?.contractConcreteSupplementary.calculateTheCarryingAmountTo
+                model?.contractConcreteSupplementary
+                  .calculateTheCarryingAmountTo
               }}</span
             >
           </p>
@@ -225,7 +241,9 @@
           <p class="invo-addr-1 color-white">
             نوع محاسبه پمپ :
             <span class="f-bold">
-              {{ model?.contractConcreteSupplementary.pumpCalculationType }}</span
+              {{
+                model?.contractConcreteSupplementary.pumpCalculationType
+              }}</span
             >
           </p>
           <p class="invo-addr-1 color-white">
@@ -248,9 +266,11 @@
         <ion-card-content class="ion-margin-top">
           <p class="invo-addr-1 color-white">
             رده مقاومتی :
-  
+
             <span class="f-bold">
-              {{ model?.contractConcreteSupplementary.resistanceCategory }}</span
+              {{
+                model?.contractConcreteSupplementary.resistanceCategory
+              }}</span
             >
           </p>
           <p class="invo-addr-1 color-white">
@@ -262,7 +282,9 @@
           <p class="invo-addr-1 color-white">
             مقدار آب:
             <span class="f-bold">
-              {{ model?.contractConcreteSupplementary.waterToCementRatio }}</span
+              {{
+                model?.contractConcreteSupplementary.waterToCementRatio
+              }}</span
             >
           </p>
           <p class="invo-addr-1 color-white">
@@ -294,64 +316,129 @@
           </p>
         </ion-card-content>
       </ion-card>
-        <!-----------شرایط و ضوابط-->
-        <div class="container mb-30 dear-client">
-          <div class="row">
-            <div class="col-12">
-              <h3 class="inv-title-1">شرایط و ضوابط</h3>
-              <div
-                [innerHTML]="
-                  model?.contractHeader.contractText1 | paragraph
-                "
-              ></div>
-              <div
-                [innerHTML]="
-                  model?.contractHeader.contractText2 | paragraph
-                "
-              ></div>
-            </div>
-          </div>
-          <div class="row">
-            <ion-checkbox   justify="end"  [(ngModel)]="isAccepted"> تمام موارد را خواندم و موافق هستم
-              </ion-checkbox>
+      <!-----------شرایط و ضوابط-->
+      <div class="container mb-30 dear-client">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="inv-title-1">شرایط و ضوابط</h3>
+            <div
+              [innerHTML]="model?.contractHeader.contractText1 | paragraph"
+            ></div>
+            <div
+              [innerHTML]="model?.contractHeader.contractText2 | paragraph"
+            ></div>
           </div>
         </div>
-       
-      
+        <div class="row">
+          <ion-checkbox justify="end" [(ngModel)]="isAccepted">
+            تمام موارد را خواندم و موافق هستم
+          </ion-checkbox>
+        </div>
+      </div>
     </div>
   </ion-content>
   <ion-footer>
     <ion-toolbar>
-    <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
-          <a
-          href="javascript:window.print()"
-          class="btn btn-lg btn-print"
-        >
-          <i class="fa fa-print"></i>چاپ
-        </a>
-                 
-         </ion-tab-button>
-        <ion-tab-button tab="radio">
-          <ion-icon name="radio"></ion-icon>
-          <i class="fa-solid fa-square-check"></i>تایید
-
-        </ion-tab-button>
-        <ion-tab-button tab="library">
-          <ion-icon name="library"></ion-icon>
-          <i class="fa-solid fa-thumbs-down"></i>عدم تایید
-        </ion-tab-button>
-        <ion-tab-button tab="search">
-          <ion-icon name="search"></ion-icon>
-          درباره ما
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
+      <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button>
+            <a href="javascript:window.print()" class="btn btn-lg btn-print">
+              <i class="fa fa-print"></i>چاپ
+            </a>
+          </ion-tab-button>
+          <ion-tab-button (click)="open(true)" class="color-white">
+            <i class="fa fa-square-check"></i>تایید
+          </ion-tab-button>
+          <ion-tab-button class="color-white" (click)="open(false)">
+            <i class="fa fa-thumbs-down"></i>عدم تایید
+          </ion-tab-button>
+          <ion-tab-button> درباره ما </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
     </ion-toolbar>
   </ion-footer>
 
+  <ion-modal #modal [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <div class="bg-color">
+        <ng-container *ngIf="isAccept; else notisAccept">
+          <ion-row class="ion-margin ion-padding row-word">
+            <ion-col size="11" class="word-selected">
+              <h6 class="color-white">آیا برای تایید قرارداد مطمئن هستید ؟</h6>
+            </ion-col>
+          </ion-row>
+          <div class="row ion-padding">
+            <p class="color-white">
+              تایید قرار داد
+              <strong>{{
+                model?.contractHeader.companyName.toUpperCase()
+              }}</strong>
+            </p>
+          </div>
+          <div class="d-flex ion-padding justify-content-center">
+            <div class="ms-2">
+              <ion-button
+                expand="full"
+                class="color-gray"
+                color="primary"
+                shape="round"
+                (click)="dismiss()"
+                >خیر</ion-button
+              >
+            </div>
+            <div>
+              <ion-button
+                color="warning"
+                shape="round"
+                expand="full"
+                (click)="accept()"
+              >
+                بله</ion-button
+              >
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #notisAccept>
+          <ion-row class="ion-margin ion-padding row-word">
+            <ion-select
+              placeholder="علت رد قرار داد"
+              [multiple]="true"
+              (ionChange)="handleChange($event)"
+              okText="انتخاب"
+              cancelText="انصراف"
+            >
+              <ion-select-option
+                *ngFor="let item of genderList"
+                [value]="item.value"
+                >{{ item.label }}</ion-select-option
+              >
+            </ion-select>
+          </ion-row>
+
+          <div class="d-flex ion-padding justify-content-center">
+            <div class="ms-2">
+              <ion-button
+                expand="full"
+                class="color-gray"
+                color="primary"
+                shape="round"
+                (click)="dismiss()"
+                >انصراف</ion-button
+              >
+            </div>
+            <div>
+              <ion-button
+                color="warning"
+                shape="round"
+                expand="full"
+                (click)="reject()"
+              >
+                ذخیره</ion-button
+              >
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </ng-template>
+  </ion-modal>
 </ion-app>
-
-
-

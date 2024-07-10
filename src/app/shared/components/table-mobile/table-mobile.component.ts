@@ -1,13 +1,15 @@
 import { Component, Input, ViewChild } from "@angular/core";
-import { MatPaginator } from "@angular/material/paginator";
+import { MatPaginator, MatPaginatorIntl } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Detail } from "../../../report/interface/contarct";
+import { CustomPaginator } from "../../services/custom-paginator";
 
 @Component({
   selector: "ngx-table-mobile",
   templateUrl: "./table-mobile.component.html",
   styleUrls: ["./table-mobile.component.scss"],
+  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }],
 })
 export class TableMobileComponent {
   constructor() {}
