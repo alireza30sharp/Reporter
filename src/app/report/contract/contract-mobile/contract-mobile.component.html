@@ -1,162 +1,357 @@
-<ion-header #hideheader>
-  <ion-toolbar color="light">
-    <ion-buttons slot="start">
-      <ion-button
-        fill="solid"
-        shape="round"
-        color="light"
-        routerLink="/app/seassons"
-      >
-        <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>قرار داد بتن آماده</ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="solid" shape="round" color="light">
-        <ion-icon
-          slot="icon-only"
-          name="share-outline"
-          color="primary"
-        ></ion-icon>
-      </ion-button>
-      <ion-button fill="solid" shape="round" color="light">
-        <ion-icon
-          slot="icon-only"
-          name="search-outline"
-          color="primary"
-        ></ion-icon>
-      </ion-button>
-      <ion-button fill="solid" shape="round" color="light">
-        <ion-icon
-          slot="icon-only"
-          color="primary"
-          name="arrow-forward"
-        ></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<div class="countainer-fluid scroll-content"
-  [appParallax]="img"
-  scrollEvents="true"
-  [appHideHeader]="hideheader"
->
-
-  <div class="relative">
-    <img id="img" #img src="/assets/images/logos/logo.png" />
-    <div class="content">
+<ion-app>
+  <ion-header #hideheader>
+    <ion-toolbar color="light">
+      <ion-buttons slot="start">
+        <ion-button
+          fill="solid"
+          shape="round"
+          color="light"
+          routerLink="/app/seassons"
+        >
+          <ion-icon slot="icon-only" name="arrow-back" color="primary"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>قرار داد بتن آماده</ion-title>
+      <ion-buttons slot="end">
+        <ion-button fill="solid" shape="round" color="light">
+          <ion-icon
+            slot="icon-only"
+            name="share-outline"
+            color="primary"
+          ></ion-icon>
+        </ion-button>
+        <ion-button fill="solid" shape="round" color="light">
+          <ion-icon
+            slot="icon-only"
+            name="search-outline"
+            color="primary"
+          ></ion-icon>
+        </ion-button>
+        <ion-button fill="solid" shape="round" color="light">
+          <ion-icon
+            slot="icon-only"
+            color="primary"
+            name="arrow-forward"
+          ></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content  class="ion-padding" [appParallax]="img" scrollEvents="true" [appHideHeader]="hideheader" (ionScroll)="onScroll($event)">
+    <div class="relative">
+      <img id="img" #img src="/assets/images/logos/logo.png" />
       <div class="content">
-        <ion-row>
-          <ion-col size="4" class="ion-padding">
-            <img
-              class="box-image"
-              src="../../../../assets/images/logos/logo-50.png"
-            />
-          </ion-col>
-          <ion-col size="6">
-            <ion-card class="ion-padding ion-text-right ion-no-margin">
-              <ion-card-header class="ion-no-padding">
-                <ion-card-title>
-                  <span>شماره قرار داد</span>
-                </ion-card-title>
-                <ion-card-subtitle>
-                  {{ model?.contractHeader?.shContract }}
-                </ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content class="ion-no-padding">
-                <ion-row>
-                  <ion-col size="5" class="ion-text-right">
-                    <ion-label>تاریخ </ion-label>
-                  </ion-col>
-                  <ion-col size="6" class="ion-text-right">
-                    {{ model?.contractHeader?.contractDate }}
-                  </ion-col>
-                </ion-row>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+        <div class="content">
+          <ion-row>
+            <ion-col size="4" class="ion-padding">
+              <img
+                class="box-image img-fluid rounded-circle"
+                src="../../../../assets/images/logos/logo-50.png"
+              />
+            </ion-col>
+            <ion-col size="6">
+              <ion-card class="ion-padding ion-text-right ion-no-margin">
+                <ion-card-header class="ion-no-padding">
+                  <ion-card-title>
+                    <span class="f-17">شماره قرار داد</span>
+                  </ion-card-title>
+                  <ion-card-subtitle class="f-15">
+                    {{ model?.contractHeader?.shContract }}
+                  </ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content class="ion-no-padding">
+                  <ion-row>
+                    <ion-col size="5" class="ion-text-right">
+                      <ion-label class="f-16">تاریخ </ion-label>
+                    </ion-col>
+                    <ion-col size="6" class="ion-text-right f-16">
+                      {{ model?.contractHeader?.contractDate }}
+                    </ion-col>
+                  </ion-row>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+      <div class="status position-absolute">
+        <span
+          class="badge bg-success success"
+          *ngIf="model?.contractHeader.isAccepted"
+          >تایید شده</span
+        >
+        <span
+          *ngIf="model?.contractHeader.isRejected"
+          class="badge bg-danger danger"
+          >تاییده نشده</span
+        >
+        <span
+          *ngIf="
+            !model?.contractHeader.isRejected && !model?.contractHeader.isAccepted
+          "
+          class="badge badge-warning"
+          >در حال بررسی</span
+        >
       </div>
     </div>
-  </div>
-  <div class="dark-bg ion-padding-start">
-    <ion-label>داستان فیلم :</ion-label>
-    <p>cvfgdfg ssd sf f sd fasf asdfasdfa</p>
-  </div>
-
-  <div>
-    <ion-card class="ion-padding ion-text-right">
-      <ion-card-header class="ion-no-padding">
-        <ion-card-title> مشخصات فروشنده </ion-card-title>
-      </ion-card-header>
-      <ion-card-content class="ion-margin-top">
-        <p class="invo-addr-1">
-          نام شخص حقیقی/حقوقی :
-          <span class="f-bold">
-            asdfasdfasdf
-            {{ model?.contractHeader.companyName }}</span
-          >
-        </p>
-        <p class="invo-addr-1">
-          شماره همراه :
-          <span class="f-bold">
-            asdfasdfasf
-            {{ model?.contractHeader.customerMobile }}</span
-          >
-        </p>
-      </ion-card-content>
-    </ion-card>
-    <ion-card class="ion-padding ion-text-right">
-      <ion-card-header class="ion-no-padding">
-        <ion-card-title> مشخصات فروشنده </ion-card-title>
-      </ion-card-header>
-      <ion-card-content class="ion-margin-top">
-        <p class="invo-addr-1">
-          نام شخص حقیقی/حقوقی :
-          <span class="f-bold">
-            asdfasdfasdf
-            {{ model?.contractHeader.companyName }}</span
-          >
-        </p>
-        <p class="invo-addr-1">
-          شماره همراه :
-          <span class="f-bold">
-            asdfasdfasf
-            {{ model?.contractHeader.customerMobile }}</span
-          >
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-  <div class="dark-bg">
-    <div class="row">
-      <div class="col-6">
-        <ion-label>کارگردان :</ion-label>
-      </div>
-      <div class="col-6"> dfsdfdsf </div>
+    <div class="dark-bg ion-padding-start">
+      <ion-label class="f-16">قرار داد بتن آماده</ion-label>
     </div>
-    <div class="row">
-      <ion-label>نویسنده :</ion-label>
-      <div class="col-chip">
-        <ion-chip>
-          <ion-label>bxvb</ion-label>
-        </ion-chip>
-      </div>
+  
+    <div>
+      <!---------------فروشنده-->
+      <ion-card class="ion-padding ion-text-right">
+        <ion-card-header class="ion-no-padding">
+          <ion-card-title class="inv-title-1 text-center f-18">
+            مشخصات فروشنده
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-margin-top">
+          <p class="invo-addr-1 color-white">
+            نام شخص حقیقی/حقوقی :
+            <span class="f-bold"> {{ model?.contractHeader.companyName }}</span>
+          </p>
+          <p class="invo-addr-1 color-white">
+            شماره همراه :
+            <span class="f-bold">
+              {{ model?.contractHeader.customerMobile }}</span
+            >
+          </p>
+        </ion-card-content>
+      </ion-card>
+      <!---------------خریدار-->
+      <ion-card class="ion-padding ion-text-right">
+        <ion-card-header class="ion-no-padding">
+          <ion-card-title class="inv-title-1 text-center f-18">
+            مشخصات خریدار
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-margin-top">
+          <p class="invo-addr-1 color-white">
+            نام شخص حقیقی/حقوقی :
+            <span class="f-bold"> {{ model?.contractHeader.customerName }}</span>
+          </p>
+          <p class="invo-addr-1 color-white">
+            نشانی کامل:
+            <span class="f-bold">
+              {{ model?.contractHeader.customerAddress }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            شماره اقتصادی:
+            <span class="f-bold">
+              {{ model?.contractHeader.customerEconomicNumber }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            کد پستی:
+            <span class="f-bold">
+              {{ model?.contractHeader.customerPostalCode }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            شماره ثبت:
+            <span class="f-bold">
+              {{ model?.contractHeader.customerRegistrationNumber }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            شماره ملی:
+            <span class="f-bold">
+              {{ model?.contractHeader.customerNationalID }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            شماره همراه:
+            <span class="f-bold">
+              {{ model?.contractHeader.customerMobile }}</span
+            >
+          </p>
+        </ion-card-content>
+      </ion-card>
     </div>
-    <div class="row">
-      <ion-label>بازیگران :</ion-label>
-      <div class="col-chip">
-        <ion-chip>
-          <ion-avatar> </ion-avatar>
-          <ion-label>xcvxcvxvc</ion-label>
-        </ion-chip>
-      </div>
-    </div>
-  </div>
-  <div class="p-2">
+  
+    <div class="p-2">
       <ngx-table-mobile [data]="model?.details"></ngx-table-mobile>
+    </div>
+    <div class="dark-bg">
+      <!---------------حمل-->
+      <ion-card class="ion-padding ion-text-right">
+        <ion-card-header class="ion-no-padding">
+          <ion-card-title class="inv-title-1 text-center f-18"
+            >اطلاعات حمل</ion-card-title
+          >
+        </ion-card-header>
+        <ion-card-content class="ion-margin-top">
+          <p class="invo-addr-1 color-white">
+            نوع محاسبه حمل :
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.pumpCalculationType }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            مبلغ واحد حمل :
+            <span class="f-bold">
+              {{
+                model?.contractConcreteSupplementary.carryingUnitAmount
+                  | separator
+              }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            محاسبه کسری تا:
+            <span class="f-bold">
+              {{
+                model?.contractConcreteSupplementary.calculateTheCarryingAmountTo
+              }}</span
+            >
+          </p>
+        </ion-card-content>
+      </ion-card>
+      <!---------------پمپ-->
+      <ion-card class="ion-padding ion-text-right">
+        <ion-card-header class="ion-no-padding">
+          <ion-card-title class="inv-title-1 text-center f-18"
+            >اطلاعات پمپ</ion-card-title
+          >
+        </ion-card-header>
+        <ion-card-content class="ion-margin-top">
+          <p class="invo-addr-1 color-white">
+            نوع پمپ :
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.pumpType }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            نوع محاسبه پمپ :
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.pumpCalculationType }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            مبلغ واحد پمپ :
+            <span class="f-bold">
+              {{
+                model?.contractConcreteSupplementary.pumpUnitAmount | separator
+              }}</span
+            >
+          </p>
+        </ion-card-content>
+      </ion-card>
+      <!-----------------------------رده مقاومتی-->
+      <ion-card class="ion-padding ion-text-right">
+        <ion-card-header class="ion-no-padding">
+          <ion-card-title class="inv-title-1 text-center f-18">
+            رده مقاومتی
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-margin-top">
+          <p class="invo-addr-1 color-white">
+            رده مقاومتی :
+  
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.resistanceCategory }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            مقدار سیمان :
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.theAmountOfCement }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            مقدار آب:
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.waterToCementRatio }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            حداقل مقاومت :
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.minimumResistance }}</span
+            >
+          </p>
+          <p class="invo-addr-1 color-white">
+            نوع سیمان :
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.typeOfCement }}</span
+            >
+          </p>
+        </ion-card-content>
+      </ion-card>
+      <!-----------------------آدرس پروژه   اتمام-->
+      <ion-card class="ion-padding ion-text-right">
+        <ion-card-header class="ion-no-padding">
+          <ion-card-title class="inv-title-1 text-center f-18">
+            آدرس پروژه
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="ion-margin-top">
+          <p class="invo-addr-1 color-white">
+            <span class="f-bold">
+              {{ model?.contractConcreteSupplementary.projectAddress }}</span
+            >
+          </p>
+        </ion-card-content>
+      </ion-card>
+        <!-----------شرایط و ضوابط-->
+        <div class="container mb-30 dear-client">
+          <div class="row">
+            <div class="col-12">
+              <h3 class="inv-title-1">شرایط و ضوابط</h3>
+              <div
+                [innerHTML]="
+                  model?.contractHeader.contractText1 | paragraph
+                "
+              ></div>
+              <div
+                [innerHTML]="
+                  model?.contractHeader.contractText2 | paragraph
+                "
+              ></div>
+            </div>
+          </div>
+          <div class="row">
+            <ion-checkbox   justify="end"  [(ngModel)]="isAccepted"> تمام موارد را خواندم و موافق هستم
+              </ion-checkbox>
+          </div>
+        </div>
+       
+      
+    </div>
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <a
+          href="javascript:window.print()"
+          class="btn btn-lg btn-print"
+        >
+          <i class="fa fa-print"></i>چاپ
+        </a>
+                 
+         </ion-tab-button>
+        <ion-tab-button tab="radio">
+          <ion-icon name="radio"></ion-icon>
+          <i class="fa-solid fa-square-check"></i>تایید
 
-  </div>
-</div>
+        </ion-tab-button>
+        <ion-tab-button tab="library">
+          <ion-icon name="library"></ion-icon>
+          <i class="fa-solid fa-thumbs-down"></i>عدم تایید
+        </ion-tab-button>
+        <ion-tab-button tab="search">
+          <ion-icon name="search"></ion-icon>
+          درباره ما
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-app>
+
+
+

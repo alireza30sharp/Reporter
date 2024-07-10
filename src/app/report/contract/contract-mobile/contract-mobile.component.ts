@@ -22,6 +22,7 @@ export class ContractMobileComponent extends ContractComponent {
   categorySlidesVisible = false;
 	listElements = [];
   activeCategory = 0;
+  
   constructor(
     public override _reportService: ReportService,
     public override _activatedRoute: ActivatedRoute,
