@@ -13,7 +13,7 @@ import { CustomPaginator } from "../../services/custom-paginator";
 })
 export class TableMobileComponent {
   constructor() {}
-
+  @Input() class: string;
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

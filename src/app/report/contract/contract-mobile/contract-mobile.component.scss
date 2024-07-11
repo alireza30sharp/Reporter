@@ -98,10 +98,13 @@ ion-chip {
 }
 
 .status {
-  top: 1rem;
-  right: 2rem;
+  top: 8rem;
+  left: 2rem;
 }
 .color-white {
+  color: white !important;
+}
+::ng-deep p {
   color: white !important;
 }
 .inv-title-1 {

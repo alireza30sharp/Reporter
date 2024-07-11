@@ -55,7 +55,8 @@
             "scripts": [
               "src/assets/scripts/stimulsoft.reports.engine.js",
               "src/assets/scripts/stimulsoft.reports.export.js",
-              "src/assets/scripts/stimulsoft.viewer.js"
+              "src/assets/scripts/stimulsoft.viewer.js",
+              "node_modules/swiper/swiper-element-bundle.min.js"
             ],
             "allowedCommonJsDependencies": [
               "lodash",

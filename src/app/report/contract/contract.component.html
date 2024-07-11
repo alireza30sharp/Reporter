@@ -129,8 +129,8 @@
                       </div>
                     </div>
                   </div>
-
-                  <div class="scroller-table">
+                  <ngx-table-mobile [data]="model?.details"></ngx-table-mobile>
+                  <!-- <div class="scroller-table">
                     <table
                       class="table table-hover table-responsive table-striped"
                     >
@@ -212,7 +212,7 @@
                         </tr>
                       </tbody>
                     </table>
-                  </div>
+                  </div> -->
                   <!-- حمل -->
                   <div class="invoice-top mt-5 mb-3">
                     <div class="invoice-number mb-30">
@@ -242,7 +242,7 @@
                           محاسبه کسری تا:
                           <span class="f-bold">{{
                             model?.contractConcreteSupplementary
-                              .calculateTheCarryingAmountTo
+                              .calculateTheCarryingAmountTo | separator
                           }}</span>
                         </p>
                       </div>

@@ -51,38 +51,30 @@
     <div class="relative">
       <img id="img" #img src="/assets/images/logos/logo.png" />
       <div class="content">
-        <div class="content">
-          <ion-row>
-            <ion-col size="4" class="ion-padding">
-              <img
-                class="box-image img-fluid rounded-circle"
-                src="../../../../assets/images/logos/logo-50.png"
-              />
-            </ion-col>
-            <ion-col size="6">
-              <ion-card class="ion-padding ion-text-right ion-no-margin">
-                <ion-card-header class="ion-no-padding">
-                  <ion-card-title>
-                    <span class="f-17">شماره قرار داد</span>
-                  </ion-card-title>
-                  <ion-card-subtitle class="f-15">
-                    {{ model?.contractHeader?.shContract }}
-                  </ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content class="ion-no-padding">
-                  <ion-row>
-                    <ion-col size="5" class="ion-text-right">
-                      <ion-label class="f-16">تاریخ </ion-label>
-                    </ion-col>
-                    <ion-col size="6" class="ion-text-right f-16">
-                      {{ model?.contractHeader?.contractDate }}
-                    </ion-col>
-                  </ion-row>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-        </div>
+        <ion-row>
+          <ion-col size="12">
+            <ion-card class="ion-padding ion-text-right ion-no-margin">
+              <ion-card-header class="ion-no-padding">
+                <ion-card-title>
+                  <span class="f-17">شماره قرار داد</span>
+                </ion-card-title>
+                <ion-card-subtitle class="f-15">
+                  {{ model?.contractHeader?.shContract }}
+                </ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="5" class="ion-text-right">
+                    <ion-label class="f-16">تاریخ </ion-label>
+                  </ion-col>
+                  <ion-col size="6" class="ion-text-right f-16">
+                    {{ model?.contractHeader?.contractDate }}
+                  </ion-col>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
       </div>
       <div class="status position-absolute">
         <span
@@ -185,7 +177,10 @@
     </div>
 
     <div class="p-2">
-      <ngx-table-mobile [data]="model?.details"></ngx-table-mobile>
+      <ngx-table-mobile
+        [data]="model?.details"
+        [class]="'bg-table'"
+      ></ngx-table-mobile>
     </div>
     <div class="dark-bg">
       <!---------------حمل-->
@@ -317,14 +312,16 @@
         </ion-card-content>
       </ion-card>
       <!-----------شرایط و ضوابط-->
-      <div class="container mb-30 dear-client">
+      <ion-card class="ion-padding ion-text-right">
         <div class="row">
           <div class="col-12">
             <h3 class="inv-title-1">شرایط و ضوابط</h3>
             <div
               [innerHTML]="model?.contractHeader.contractText1 | paragraph"
+              class="color-white"
             ></div>
             <div
+              class="color-white"
               [innerHTML]="model?.contractHeader.contractText2 | paragraph"
             ></div>
           </div>
@@ -334,16 +331,19 @@
             تمام موارد را خواندم و موافق هستم
           </ion-checkbox>
         </div>
-      </div>
+      </ion-card>
     </div>
   </ion-content>
   <ion-footer>
     <ion-toolbar>
       <ion-tabs>
         <ion-tab-bar slot="bottom">
-          <ion-tab-button>
-            <a href="javascript:window.print()" class="btn btn-lg btn-print">
-              <i class="fa fa-print"></i>چاپ
+          <ion-tab-button class="color-white">
+            <a
+              href="javascript:window.print()"
+              class="btn btn-block btn-lg btn-light btn-print f-12 text-decoration-none"
+            >
+              چاپ
             </a>
           </ion-tab-button>
           <ion-tab-button (click)="open(true)" class="color-white">
@@ -352,7 +352,12 @@
           <ion-tab-button class="color-white" (click)="open(false)">
             <i class="fa fa-thumbs-down"></i>عدم تایید
           </ion-tab-button>
-          <ion-tab-button> درباره ما </ion-tab-button>
+          <ion-tab-button
+            [routerLink]="['/report', 'search']"
+            class="color-white"
+          >
+            درباره ما
+          </ion-tab-button>
         </ion-tab-bar>
       </ion-tabs>
     </ion-toolbar>

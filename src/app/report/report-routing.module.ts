@@ -18,7 +18,12 @@ const routes: Routes = [
       {
         path: "contract/:trackingCode",
         component: ContractComponent,
-        canActivate: [AdminAuthGuard],
+        // canActivate: [AdminAuthGuard],
+      },
+      {
+        path: "search",
+        loadChildren: () =>
+          import("./search/search.module").then((m) => m.SearchPageModule),
       },
       {
         path: "confirmations/:trackingCode",
