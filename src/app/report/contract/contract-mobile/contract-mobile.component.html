@@ -1,7 +1,14 @@
 <ion-app>
   <ion-header #hideheader>
     <ion-toolbar>
-      <ion-title>قرار داد بتن آماده</ion-title>
+      <div class="d-flex justify-content-between">
+        <div class="f-11">
+          فروشنده: {{ model?.contractHeader?.companyName }}
+        </div>
+        <div class="f-11">
+          خریدار :{{ model?.contractHeader?.customerName }}
+        </div>
+      </div>
     </ion-toolbar>
   </ion-header>
   <ion-content
@@ -81,12 +88,14 @@
         <ion-card-content class="ion-margin-top">
           <p class="invo-addr-1 color-white f-12 mb-2">
             نام شخص حقیقی/حقوقی :
-            <span class="f-bold"> {{ model?.contractHeader.companyName }}</span>
+            <span class="f-bold">
+              {{ model?.contractHeader?.companyName }}</span
+            >
           </p>
           <p class="invo-addr-1 color-white f-12 mb-2">
             شماره همراه :
             <span class="f-bold">
-              {{ model?.contractHeader.customerMobile }}</span
+              {{ model?.contractHeader?.customerMobile }}</span
             >
           </p>
         </ion-card-content>
@@ -102,43 +111,43 @@
           <p class="invo-addr-1 color-white f-12 mb-2">
             نام شخص حقیقی/حقوقی :
             <span class="f-bold">
-              {{ model?.contractHeader.customerName }}</span
+              {{ model?.contractHeader?.customerName }}</span
             >
           </p>
           <p class="invo-addr-1 color-white f-12 mb-2">
             نشانی کامل:
             <span class="f-bold">
-              {{ model?.contractHeader.customerAddress }}</span
+              {{ model?.contractHeader?.customerAddress }}</span
             >
           </p>
           <p class="invo-addr-1 color-white f-12 mb-2">
             شماره اقتصادی:
             <span class="f-bold">
-              {{ model?.contractHeader.customerEconomicNumber }}</span
+              {{ model?.contractHeader?.customerEconomicNumber }}</span
             >
           </p>
           <p class="invo-addr-1 color-white f-12 mb-2">
             کد پستی:
             <span class="f-bold">
-              {{ model?.contractHeader.customerPostalCode }}</span
+              {{ model?.contractHeader?.customerPostalCode }}</span
             >
           </p>
           <p class="invo-addr-1 color-white f-12 mb-2">
             شماره ثبت:
             <span class="f-bold">
-              {{ model?.contractHeader.customerRegistrationNumber }}</span
+              {{ model?.contractHeader?.customerRegistrationNumber }}</span
             >
           </p>
           <p class="invo-addr-1 color-white f-12 mb-2">
             شماره ملی:
             <span class="f-bold">
-              {{ model?.contractHeader.customerNationalID }}</span
+              {{ model?.contractHeader?.customerNationalID }}</span
             >
           </p>
           <p class="invo-addr-1 color-white f-12 mb-2">
             شماره همراه:
             <span class="f-bold">
-              {{ model?.contractHeader.customerMobile }}</span
+              {{ model?.contractHeader?.customerMobile }}</span
             >
           </p>
         </ion-card-content>
@@ -162,14 +171,16 @@
         <p class="invo-addr-1 color-white f-12 mb-2">
           نوع محاسبه حمل :
           <span class="f-bold">
-            {{ model?.contractConcreteSupplementary.pumpCalculationType }}</span
+            {{
+              model?.contractConcreteSupplementary?.pumpCalculationType
+            }}</span
           >
         </p>
         <p class="invo-addr-1 color-white f-12 mb-2">
           مبلغ واحد حمل :
           <span class="f-bold">
             {{
-              model?.contractConcreteSupplementary.carryingUnitAmount
+              model?.contractConcreteSupplementary?.carryingUnitAmount
                 | separator
             }}</span
           >
@@ -178,7 +189,7 @@
           محاسبه کسری تا:
           <span class="f-bold">
             {{
-              model?.contractConcreteSupplementary.calculateTheCarryingAmountTo
+              model?.contractConcreteSupplementary?.calculateTheCarryingAmountTo
             }}</span
           >
         </p>
@@ -292,28 +303,33 @@
       </div>
     </ion-card>
     <div class="row mb-3"></div>
+    <div class="row mb-3"></div>
+    <div class="row mb-3"></div>
   </ion-content>
   <ion-footer class="mt-4">
     <ion-toolbar>
       <ion-tabs>
         <ion-tab-bar slot="bottom">
-          <ion-tab-button class="color-footer">
+          <ion-tab-button class="color-footer f-14">
             <a
               href="javascript:window.print()"
-              class="btn btn-block color-footer btn-lg btn-print f-12 text-decoration-none"
+              class="btn f-bold btn-block color-footer btn-lg btn-print f-12 text-decoration-none"
             >
               چاپ
             </a>
           </ion-tab-button>
-          <ion-tab-button (click)="open(true)" class="color-footer">
+          <ion-tab-button (click)="open(true)" class="color-footer f-14">
             <i class="fa fa-square-check"></i>تایید
           </ion-tab-button>
-          <ion-tab-button class="color-footer" (click)="open(false)">
+          <ion-tab-button
+            class="color-footer f-bold f-14"
+            (click)="open(false)"
+          >
             <i class="fa fa-thumbs-down"></i>عدم تایید
           </ion-tab-button>
           <ion-tab-button
             [routerLink]="['/report', 'search']"
-            class="color-footer"
+            class="color-footer f-bold f-14"
           >
             درباره ما
           </ion-tab-button>

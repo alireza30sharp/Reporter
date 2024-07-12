@@ -84,7 +84,7 @@ export class ContractMobileComponent extends ContractComponent {
     this.modal.present();
   }
   accept() {
-    this._reportService.acceptContract(this.eid).subscribe({
+    this._reportService.acceptContract(this.tracking.trackingCode).subscribe({
       next: (res) => {
         if (res.isOk) {
           this._toastService.success(res.data.message);
@@ -105,9 +105,12 @@ export class ContractMobileComponent extends ContractComponent {
   handleChange(ev) {
     this.rejectedList = ev.target.value.toString();
   }
-  reject(data: rejectedDto) {
-    data.trackingCode = this.tracking.trackingCode;
-    data.comment = this.rejectedList.toString();
+  reject() {
+    let data: rejectedDto = {
+      trackingCode: this.tracking.trackingCode,
+      comment: this.rejectedList,
+    };
+
     this._reportService
       .rejectContract(data as any)
       .pipe(finalize(() => {}))

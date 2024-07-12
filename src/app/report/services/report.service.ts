@@ -42,7 +42,7 @@ export class ReportService {
       }
     );
   }
-  acceptContract(Id: number) {
+  acceptContract(Id: string) {
     return this.$http.post<response<any>>(this.urlSvc.contract.AcceptContract, {
       trackingCode: Id,
     });
