@@ -7,17 +7,25 @@ ion-header {
     font-size: 10px;
   }
 }
-
+ion-toolbar,
+ion-tabs,
+ion-footer {
+  --background: var(--red);
+}
+.header-bg {
+  border-bottom: 1px solid var(--red);
+  color: #fff;
+}
 ion-content {
   position: absolute;
-  --background: #121c3b;
+  --background: #fff;
 }
 
 ion-card {
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
   font-size: 15px;
   --background: transparent;
   --ion-background-color: transparent;
-  box-shadow: none;
   text-align: center;
   ion-card-header {
     ion-card-subtitle {
@@ -57,9 +65,9 @@ ion-chip {
 }
 
 .dark-bg {
-  background: #040b23;
+  background: #ffff;
   z-index: 10;
-  color: #fff;
+  color: black;
   direction: rtl;
   line-height: 39px;
 }
@@ -98,14 +106,14 @@ ion-chip {
 }
 
 .status {
-  top: 8rem;
+  bottom: 1rem;
   left: 2rem;
 }
 .color-white {
-  color: white !important;
+  color: black !important;
 }
 ::ng-deep p {
-  color: white !important;
+  color: black !important;
 }
 .inv-title-1 {
   font-weight: 500;
@@ -156,10 +164,15 @@ ion-modal {
   --height: auto;
 }
 .bg-color {
-  background-color: #030319 !important;
-  color: #fff !important;
+  background-color: #fff !important;
+  color: #030319 !important;
 }
-
+.color-footer {
+  color: #fff;
+}
+.f-bold {
+  font-weight: 800;
+}
 .word-selected {
   color: #fff !important;
   font-weight: 800;

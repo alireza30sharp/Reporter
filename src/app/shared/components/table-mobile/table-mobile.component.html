@@ -155,7 +155,7 @@
         class="font-primary"
         data-label="مبلغ ارزش افزوده"
       >
-        {{ row.complicationsAmount }}
+        {{ row.complicationsAmount | separator }}
       </mat-cell>
       <mat-footer-cell *matFooterCellDef class="font-primary">{{
         totalComplicationsAmount | separator
@@ -185,7 +185,7 @@
   <div class="dark-bg ion-footer">
     <ion-card class="ion-text-right">
       <ion-card-content class="card-content-md ion-margin-top">
-        <div class="d-flex justify-content-between mb-2 border-bottom">
+        <div class="d-flex justify-content-between mb-4 p-2 border-bottom">
           <p class="invo-addr-1 color-white">
             جمع کل مقدار :
             <span class="f-bold"> {{ totalMeghdar | separator }}</span>
@@ -195,7 +195,7 @@
             <span class="f-bold"> {{ totalTotalAmount | separator }}</span>
           </p>
         </div>
-        <div class="d-flex justify-content-between mb-2 border-bottom">
+        <div class="d-flex justify-content-between mb-4 p-2 border-bottom">
           <p class="invo-addr-1 color-white">
             جمع مبلغ تخفیف :
             <span class="f-bold"> {{ totalDiscountAmount | separator }}</span>
@@ -205,7 +205,7 @@
             <span class="f-bold"> {{ totalValueAddedAmount | separator }}</span>
           </p>
         </div>
-        <div class="d-flex justify-content-between mb-2 border-bottom">
+        <div class="d-flex justify-content-between mb-4 p-2 border-bottom">
           <p class="invo-addr-1 color-white">
             جمع مبلغ ارزش افزوده :
             <span class="f-bold">

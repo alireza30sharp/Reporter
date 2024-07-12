@@ -4,15 +4,14 @@
   min-width: 230px;
 }
 .bg-table {
-  background: #040b23 !important;
+  background: #fff !important;
   mat-cell,
   mat-header-cell {
-    color: white;
+    color: 040b23;
   }
 }
 ion-card {
-  background: var(--red) !important;
-  color: #040b23;
+  background: #fff !important;
 }
 .border-bottom {
   border-bottom: 1px dashed #040b23 !important;
@@ -49,7 +48,7 @@ mat-footer-cell {
     */
   .mat-mdc-table .mat-mdc-header-row,
   .mat-mdc-table .mat-mdc-footer-row {
-    border: 20px solid var(--red) !important;
+    border: 5px solid var(--red) !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
     margin: -1px !important;
@@ -58,7 +57,8 @@ mat-footer-cell {
     width: 1px !important;
   }
   .mat-mdc-table .mat-mdc-row {
-    border: 5px solid var(--red) !important;
+    border-radius: 13px;
+    border: 2px solid var(--red) !important;
     margin-bottom: 10px;
     display: block !important;
   }
